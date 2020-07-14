@@ -1,0 +1,21 @@
+User
+- Has many book-lists
+- Has many lists through book-lists
+- Has many books through book-lists
+- :username - string, :password - string
+
+Book
+- Has many book-lists
+- Has many lists through book-lists
+- :title - string, :author - string, :note - string
+
+List
+- Has many book-lists
+- Has many books through book-lists
+- :title - string
+
+Book-List
+- Belongs to a book
+- Belongs to a list
+- Belongs to a user
+- :book_id - integer, :list_id - integer, :user_id - integer
