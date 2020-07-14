@@ -2,17 +2,17 @@ User
 - Has many book-lists
 - Has many lists through book-lists
 - Has many books through book-lists
-- :username - string, :password - string
+- :username - string, :password_digest - string
 
 Book
 - Has many book-lists
 - Has many lists through book-lists
-- :title - string, :author - string, :note - string
+- :title - string, :author - string, :purchase_link - string, :note - string
 
 List
 - Has many book-lists
 - Has many books through book-lists
-- :title - string
+- :name - string, :note - string
 
 Book-List
 - Belongs to a book
