@@ -7,5 +7,5 @@ class BookList < ApplicationRecord
     # validates :list_id, presence: :true 
     # validates :user_id, presence: :true
 
-    validates :book_id, :list_id, :user_id presence: :true
+    validates :book_id, :list_id, :user_id, presence: :true
 end

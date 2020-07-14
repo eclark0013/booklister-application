@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  namespase :api do
+  namespace :api do
     namespace :v1 do
       resources :book_lists
       resources :lists

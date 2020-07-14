@@ -3,7 +3,6 @@ class CreateBooks < ActiveRecord::Migration[6.0]
     create_table :books do |t|
       t.string :title
       t.string :author
-      t.string :purchase_link
       t.string :note
 
       t.timestamps
