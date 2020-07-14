@@ -1,2 +1,2 @@
-class BookListsController < ApplicationController
+class Api::V1::BookListsController < ApplicationController
 end
