@@ -42,3 +42,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # for resetting seed data
 gem 'database_cleaner-active_record'
+
+#serializers
+gem 'active_model_serializers'
