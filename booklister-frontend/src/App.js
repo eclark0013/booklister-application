@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import {addBook} from './actions/addBook'
 
 class App extends Component {
   
@@ -14,6 +16,7 @@ class App extends Component {
       this.setState({
         favoriteBook: favBook
       })
+      this.props.addBook(favBook)
       console.log(favBook)
     })
   }
@@ -22,10 +25,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>{this.state.favoriteBook}</div>
+        <div>App</div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return state // limit what is being sent in the future
+}
+
+const mapDispatchToProps = dispatch => {
+  return {addBook: book => addBook(book)}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
