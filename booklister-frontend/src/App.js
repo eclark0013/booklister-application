@@ -1,31 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import {addBook} from './actions/addBook'
+import BooksContainer from './containers/BooksContainer'
+import ListsContainer from './containers/ListsContainer';
 
 class App extends Component {
-  
-  state = {favoriteBook: ""}
-
-  componentDidMount(){
-    fetch('http://localhost:3000/api/v1/users/1/books')
-    .then(function(response){
-      return response.json()
-    })
-    .then(data => {
-      let favBook = data[0].title
-      this.setState({
-        favoriteBook: favBook
-      })
-      this.props.addBook(favBook)
-      console.log(favBook)
-    })
-  }
-  
-
   render() {
     return (
       <div className="App">
         <div>App</div>
+        <BooksContainer />
+        <ListsContainer />
       </div>
     );
   }
