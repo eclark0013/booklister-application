@@ -1,14 +1,19 @@
 export default function bookReducer(state = {
-    books: [],
+    data: []
   }, action) {
     switch (action.type) {
-      case 'ADD_BOOK':
+        case 'ADD_BOOK':
+            console.log({books: state.data.books.concat(action.book)});
+            return {data: state.data.books.concat(action.book)};
+
+        case 'ADD_LISTS_TO_STORE':
+            debugger
+            console.log("looks like you made it")
+            return {data: action.lists}
         
-        console.log({books: state.books.concat(action.book)});
-  
-        return {books: state.books.concat(action.book)};
-      
-      default: return state;
+        default: 
+            console.log("default reducer case hit")
+        return state;
     }
   }
   

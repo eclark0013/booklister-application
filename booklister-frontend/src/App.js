@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {addBook} from './actions/addBook'
+// import {addBook} from './actions/addBook'
+import {addListsToStore} from './actions/addListsToStore'
 import BooksContainer from './containers/BooksContainer'
 import ListsContainer from './containers/ListsContainer';
 
 class App extends Component {
+  
+  componentDidMount(){
+    fetch('http://localhost:3000/api/v1/users/1/lists')
+    .then(function(response){
+    return response.json()
+    })
+    .then(data => {
+      this.props.addListsToStore(data)
+    })
+  }
+  
   render() {
     return (
       <div className="App">
@@ -21,7 +33,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {addBook: book => addBook(book)}
+  return {addListsToStore: lists => dispatch(addListsToStore(lists))}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)
