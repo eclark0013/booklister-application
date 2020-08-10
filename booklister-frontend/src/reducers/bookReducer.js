@@ -1,15 +1,14 @@
 export default function bookReducer(state = {
-    data: []
+    data: {}
   }, action) {
     switch (action.type) {
         case 'ADD_BOOK':
-            console.log({books: state.data.books.concat(action.book)});
+            console.log("you made it to the add_book reducer case");
             return {data: state.data.books.concat(action.book)};
 
         case 'ADD_LISTS_TO_STORE':
-            debugger
-            console.log("looks like you made it")
-            return {data: action.lists}
+            console.log("you made it to the add_lists_to_store reducer case")
+            return {data: {lists: action.payload.lists}}
         
         default: 
             console.log("default reducer case hit")

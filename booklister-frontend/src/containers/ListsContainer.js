@@ -1,11 +1,11 @@
 import React, { Component}  from 'react'
 import { connect } from 'react-redux'
 // import { addBook } from '../actions/addBook' 
-import ListInput from '../components/ListInput'
+// import ListInput from '../components/ListInput'
+import {addListsToStore} from '../actions/addListsToStore'
 import Lists from '../components/Lists'
 
 class ListsContainer extends Component {
-    state = {lists: ['list_0', 'list_1', 'llist_2']}
 
     // componentDidMount(){
     //     fetch('http://localhost:3000/api/v1/users/1/books')
@@ -21,24 +21,35 @@ class ListsContainer extends Component {
     //     console.log(favBook)
     //     })
     // }
+
+    state = {dataIsFetched: false}
+
+    componentDidMount(){
+        this.props.addListsToStore()
+    }
     
     render() {
-        return (
-        <div>
-            <div>ListsContainer</div>
-            <ListInput />
-            <Lists />
-        </div>
-        )
+        if(this.props.lists){
+            return (
+                <div>
+                    <div>ListsContainer</div>
+                    {/* <ListInput /> */}
+                    <Lists lists={this.props.lists}/>
+                </div>
+            )
+        }
+        else {
+            return null
+        }
     }
 }
 
 const mapStateToProps = state => {
-    return state
+    return ({lists: state.data.lists})
 }
 
-const mapDispatchToProps = dispatch => {
-    return null
-}
+// const mapDispatchToProps = dispatch => {
+//     return null
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListsContainer)
+export default connect(mapStateToProps, {addListsToStore})(ListsContainer)
