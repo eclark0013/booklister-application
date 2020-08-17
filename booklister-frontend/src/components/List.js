@@ -1,10 +1,11 @@
 import React from 'react'
 
-const List = (props) => {
+const List = ({list}) => {
     return (
-        <div>
-            Name: {props.name}
-        </div>
+        <li>
+            Name: {list.name}
+            {/* <BooksContainer /> */}
+        </li>
     )
 }
 
