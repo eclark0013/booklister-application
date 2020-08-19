@@ -9,6 +9,7 @@ class Api::V1::ListsController < ApplicationController
     end
 
     def create
+        binding.pry
         list = List.new(list_params)
         if list.save
             render json: list

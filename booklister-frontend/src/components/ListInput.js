@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
+import { addListToDatabase } from '../actions/addListToDatabase'
 
 class ListInput extends Component {
     
@@ -9,23 +11,38 @@ class ListInput extends Component {
 
     handleChange = (event) => {
         this.setState({
-            name: event.target.value
+            [event.target.name]: event.target.value
         })
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault()
+        this.props.addListToDatabase({
+            name: this.state.name
+        })
+        this.setState( state => {
+            return({
+                name: ""
+            })
+        })
+        console.log("handle submit function completed")
     }
     
     render() {
         return (
             <div>
                 List Input Form
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <label>List name: </label>
-                    <input type="text" placeholder="Name" value={this.state.name} onChange={this.handleChange}/>
+                    <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
                     <p>Select books...</p> 
                     {/* Add book button, when clicked opens up input with type=text, as you enter info on book it autoloads options */}
+                    <input type="submit" />
                 </form>
+                Thing submitted: {this.state.submittedNames}
             </div>
         )
     }
 }
 
-export default ListInput
+export default connect(null, {addListToDatabase})(ListInput)
