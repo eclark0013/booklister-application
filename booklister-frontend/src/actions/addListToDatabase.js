@@ -7,30 +7,18 @@ export const addListToDatabase = (list) => {
               "Content-Type": "application/json",
               "Accept": "application/json"
             },
-            body: JSON.stringify({list})
+            body: JSON.stringify(list)
           };
         fetch("http://localhost:3000/api/v1/users/1/lists", configObj)
             .then(function(response) {
                 return response.json();
             })
             .then(function(object) {
-                debugger
+                // list is returned here
                 console.log(object)
             })
             .catch(function(error) {
-                debugger
                 console.log(error);
             });
-        
-        
-        
-        // fetch('http://localhost:3000/api/v1/users/1/lists')
-        // .then(function(response){
-        //     return response.json()
-        // })
-        // .then(data => dispatch({
-        //     type: "ADD_LISTS_TO_STORE",
-        //     payload: {lists: data}
-        // }))
     }
 }

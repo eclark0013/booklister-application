@@ -26,6 +26,6 @@ class Api::V1::ListsController < ApplicationController
 
     private
     def list_params
-        params.require(:list).permit(:name, :note)
+        params.require(:list).permit(:name, :note, :books)
     end
 end

@@ -17,9 +17,7 @@ class ListInput extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.addListToDatabase({
-            name: this.state.name
-        })
+        this.props.addListToDatabase(this.state)
         this.setState( state => {
             return({
                 name: ""
@@ -39,7 +37,6 @@ class ListInput extends Component {
                     {/* Add book button, when clicked opens up input with type=text, as you enter info on book it autoloads options */}
                     <input type="submit" />
                 </form>
-                Thing submitted: {this.state.submittedNames}
             </div>
         )
     }
