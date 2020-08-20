@@ -9,10 +9,11 @@ class ListInput extends Component {
     
     state = {
         name: "",
+        note: "",
         book: ""
     }
 
-    handleNameChange = (event) => {
+    handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -42,7 +43,10 @@ class ListInput extends Component {
                 List Input Form
                 <form onSubmit={this.handleSubmit}>
                     <label>List name: </label>
-                    <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleNameChange}/>
+                    <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
+                    <br />
+                    <label>Note: </label>
+                    <input type="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
                     <p>Select books...</p> 
                     {/* Add book button, when clicked opens up input with type=text, as you enter info on book it autoloads options */}
                     <Autocomplete
