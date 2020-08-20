@@ -9,9 +9,11 @@ class Api::V1::ListsController < ApplicationController
     end
 
     def create
-        binding.pry
         list = List.new(list_params)
         if list.save
+            book = Book.find_by(title: books_params["book"])
+            BookList.create(book_id: book.id, list_id: list.id, user_id: 1)
+            binding.pry
             render json: list
         else
             render json: list.errors
@@ -26,6 +28,10 @@ class Api::V1::ListsController < ApplicationController
 
     private
     def list_params
-        params.require(:list).permit(:name, :note, :books)
+        params.require(:list).permit(:name, :note)
+    end
+
+    def books_params
+        params.permit(:book)
     end
 end
