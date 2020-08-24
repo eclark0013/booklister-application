@@ -9,14 +9,12 @@ class Api::V1::ListsController < ApplicationController
     end
 
     def create
-        binding.pry
         list = List.new(list_params)
         if list.save
-            parparams["books"].each do |book_title|
+            params["books"].each do |book_title|
                 book = Book.find_by(title: book_title)
                 BookList.create(book_id: book.id, list_id: list.id, user_id: 1)
             end
-            binding.pry
             render json: list
         else
             render json: list.errors
