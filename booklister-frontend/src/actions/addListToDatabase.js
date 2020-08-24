@@ -1,7 +1,6 @@
 export const addListToDatabase = (list) => {
     // possible because of thunk
     return (dispatch) => { 
-        debugger
         let configObj = {
             method: "POST",
             headers: {

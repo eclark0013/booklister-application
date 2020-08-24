@@ -2,13 +2,13 @@ import React, { Component}  from 'react'
 import { connect } from 'react-redux'
 // import { addBook } from '../actions/addBook' 
 import ListInput from '../components/ListInput'
-import {addListsToStore} from '../actions/addListsToStore'
+import {fetchLists} from '../actions/fetchLists'
 import Lists from '../components/Lists'
 
 class ListsContainer extends Component {
 
     componentDidMount(){
-        this.props.addListsToStore()
+        this.props.fetchLists()
     }
     
     render() {
@@ -34,4 +34,4 @@ const mapStateToProps = state => {
 //     return null
 // }
 
-export default connect(mapStateToProps, {addListsToStore})(ListsContainer)
+export default connect(mapStateToProps, {fetchLists})(ListsContainer)

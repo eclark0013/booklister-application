@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 // import {addBook} from './actions/addBook'
-import {addListsToStore} from './actions/addListsToStore'
+import {fetchLists} from './actions/fetchLists'
 // import BooksContainer from './containers/BooksContainer'
 import ListsContainer from './containers/ListsContainer';
 
@@ -21,7 +21,7 @@ const mapStateToProps = state => {
 }
 
 // const mapDispatchToProps = dispatch => {
-//   return {addListsToStore: lists => dispatch(addListsToStore(lists))}
+//   return {fetchLists: lists => dispatch(fetchLists(lists))}
 // }
 
-export default connect(mapStateToProps, {addListsToStore})(App)
+export default connect(mapStateToProps, {fetchLists})(App)
