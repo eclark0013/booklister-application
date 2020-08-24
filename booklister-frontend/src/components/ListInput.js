@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { addListToDatabase } from '../actions/addListToDatabase'
+import { addList } from '../actions/addList'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -24,7 +24,7 @@ class ListInput extends Component {
         let currentBooks = Array.prototype.slice.call(document.getElementsByClassName("MuiChip-label")).map(e => e.innerText)
         let listData = this.state
         listData.books = currentBooks
-        this.props.addListToDatabase(listData)
+        this.props.addList(listData)
         document.querySelector('[title="Clear"]').click()
         this.setState( state => {
             return({
@@ -50,7 +50,7 @@ class ListInput extends Component {
                         multiple
                         id="book-selection-box"
                         name="book"
-                        options={this.props.data.lists[0].books}
+                        options={this.props.lists[0].books}
                         getOptionLabel={(option) => `${option.title}`} // by ${option.author} ?
                         style={{ width: 300 }}
                         renderInput={(params) => <TextField {...params} label="Book" variant="outlined"/>}
@@ -66,4 +66,4 @@ const mapStateToProps = state => {
     return state
 }
 
-export default connect(mapStateToProps, {addListToDatabase})(ListInput)
+export default connect(mapStateToProps, {addList})(ListInput)

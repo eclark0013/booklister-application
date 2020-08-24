@@ -27,7 +27,7 @@ class ListsContainer extends Component {
 }
 
 const mapStateToProps = state => {
-    return ({lists: state.data.lists})
+    return ({lists: state.lists})
 }
 
 // const mapDispatchToProps = dispatch => {

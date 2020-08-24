@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-// import {addBook} from './actions/addBook'
 import {fetchLists} from './actions/fetchLists'
 // import BooksContainer from './containers/BooksContainer'
 import ListsContainer from './containers/ListsContainer';
