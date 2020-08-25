@@ -25,7 +25,7 @@ class ListInput extends Component {
         let listData = this.state
         listData.books = currentBooks
         this.props.addList(listData)
-        document.querySelector('[title="Clear"]').click()
+        document.querySelector('[title="Clear"]').click() // removes books from input field
         this.setState( state => {
             return({
                 name: "",

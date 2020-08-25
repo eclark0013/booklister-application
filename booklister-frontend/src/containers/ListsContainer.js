@@ -1,9 +1,10 @@
 import React, { Component}  from 'react'
 import { connect } from 'react-redux'
-// import { addBook } from '../actions/addBook' 
 import ListInput from '../components/ListInput'
 import {fetchLists} from '../actions/fetchLists'
 import Lists from '../components/Lists'
+import List from '../components/List'
+import {Route} from 'react-router-dom'
 
 class ListsContainer extends Component {
 
@@ -15,8 +16,10 @@ class ListsContainer extends Component {
         if(this.props.lists){
             return (
                 <div>
-                    <ListInput /><br></br>
-                    <Lists lists={this.props.lists}/>
+                    Lists Container Page (is all else is blank, try routing to /lists/new or /lists)<br/><br/>
+                    <Route path='/lists/new' component={ListInput} />
+                    <Route path='/lists/:id' render={(routerProps) => <List {...routerProps} lists={this.props.lists}/>} />
+                    <Route exact path='/lists' render={(routerProps) => <Lists {...routerProps} lists={this.props.lists}/>} />
                 </div>
             )
         }
