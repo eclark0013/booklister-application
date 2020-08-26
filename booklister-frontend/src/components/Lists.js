@@ -1,12 +1,12 @@
 import React from 'react'
-import List from './List'
+import {Link} from 'react-router-dom'
 
 const Lists = (props) => {
     return (
         <div>
             Lists are ...
                 <ul>
-                    {props.lists.map(list => <List list={list}/>)}
+                    {props.lists.map(list => <li key={list.id}><Link to={`/lists/${list.id}`}> {list.name} </Link></li>)}
                 </ul>
         </div>
     )

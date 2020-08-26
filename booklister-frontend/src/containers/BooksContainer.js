@@ -1,27 +1,23 @@
-// render other components, pass them data if required, have callback functions, componentDidMount to get data, a data passer
-// typically class components because may need state or componnetDidMount or other lifecycle methods
+import React from 'react'
+// import {Link} from 'react-router-dom'
+// import {Route, Switch} from 'react-router-dom'
+// import Book from '../components/Book'
+import Books from '../components/Books'
 
-import React, { Component}  from 'react'
-import { connect } from 'react-redux'
-import { addBook } from '../actions/addBook' 
-
-class BooksContainer extends Component {
-    render() {
-        return (
+const BooksContainer = (props) => {
+    return (
         <div>
-            <div>BooksContainer</div>
-            <Books books={this.props.books}/>
+            <ul>
+                {/* {props.books.map(list => <li key={book.id}><Link to={`/books/${book.id}`}> {book.title} </Link></li>)} */}
+                {/* <Switch>
+                    <Route path='/lists/:list_id/books/:book_id' render={(routerProps) => <Book {...routerProps} list={this.props.list.books}/>} />
+                    <Route path='/lists/:list_id/books' render={(routerProps) => <Books {...routerProps} lists={this.props.list.books}/>} />
+                </Switch> */}
+                {/* {props.books.map(book => <li key={book.id}>{book.title}</li>)} */}
+                <Books list={props.list} />
+            </ul>
         </div>
-        )
-    }
+    )
 }
 
-const mapStateToProps = state => {
-    return state // limit what is being sent in the future
-  }
-  
-  const mapDispatchToProps = dispatch => {
-    return {addBook: book => addBook(book)}
-  }
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(BooksContainer);
+export default BooksContainer

@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import {fetchLists} from './actions/fetchLists'
 // import BooksContainer from './containers/BooksContainer'
 import ListsContainer from './containers/ListsContainer';
+import {Route} from 'react-router-dom'
+import BookInput from './components/BookInput'
+
 
 class App extends Component {
   
@@ -10,6 +13,7 @@ class App extends Component {
       return (
         <div className="App">
           <ListsContainer />
+          <Route path='/books/new' component={BookInput} />
         </div>
       );
   }
