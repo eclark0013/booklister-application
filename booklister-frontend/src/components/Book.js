@@ -10,8 +10,9 @@ const Book = (props) => {
     }
     return (
         <div>
-            <div>{book.title} - Note: {book.note}</div>
-            <div>A part of the following lists</div> 
+            <div>Title: {book.title} </div>
+            <div>Note: {book.note}</div>
+            <div>A part of the following lists:</div> 
             <ul>
                 {props.lists.filter(list => list.books.filter(book_check => book_check.id === book.id).length > 0).map(
                     list => <li key={list.id}><Link to={`/lists/${list.id}`}> {list.name} </Link></li>

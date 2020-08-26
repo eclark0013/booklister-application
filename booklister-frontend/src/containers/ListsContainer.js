@@ -17,7 +17,6 @@ class ListsContainer extends Component {
         if(this.props.lists){
             return (
                 <div>
-                    Lists Container Page (is all else is blank, try routing to /lists/new or /lists)<br/><br/>
                     <Switch>
                         <Route path='/lists/new' component={ListInput} />
                         <Route path='/lists/:id' render={(routerProps) => <List {...routerProps} lists={this.props.lists}/>} />
