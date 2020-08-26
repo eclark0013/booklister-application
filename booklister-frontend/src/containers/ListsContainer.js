@@ -22,7 +22,7 @@ class ListsContainer extends Component {
                         <Route path='/lists/new' component={ListInput} />
                         <Route path='/lists/:id' render={(routerProps) => <List {...routerProps} lists={this.props.lists}/>} />
                         <Route path='/lists' render={(routerProps) => <Lists {...routerProps} lists={this.props.lists}/>} />
-                        <Route path='/books/:id' render={(routerProps) => <Book {...routerProps} list={this.props.lists}/>} />
+                        <Route path='/books/:id' render={(routerProps) => <Book {...routerProps} />} />
                     </Switch>
                 </div>
             )
