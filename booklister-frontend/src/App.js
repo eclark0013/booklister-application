@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import {fetchLists} from './actions/fetchLists'
 // import BooksContainer from './containers/BooksContainer'
 // import ListsContainer from './containers/ListsContainer';
-import {Switch, Route} from 'react-router-dom'
-// import BookInput from './components/BookInput'
+import {Switch, Route, Link} from 'react-router-dom'
+import BookInput from './components/BookInput'
 import ListInput from './components/ListInput'
 import Lists from './components/Lists'
 import List from './components/List'
 import Book from './components/Book'
+import Home from './components/Home'
 
 
 class App extends Component {
@@ -26,7 +27,9 @@ class App extends Component {
             <Route path='/lists/new' component={ListInput} />
             <Route path='/lists/:id' render={(routerProps) => <List {...routerProps} lists={this.props.lists}/>} />
             <Route path='/lists' render={(routerProps) => <Lists {...routerProps} lists={this.props.lists}/>} />
+            <Route path='/books/new' component={BookInput} />
             <Route path='/books/:id' render={(routerProps) => <Book {...routerProps} />} />
+            <Route path='/' component={Home} />
           </Switch>
         </div>
       )

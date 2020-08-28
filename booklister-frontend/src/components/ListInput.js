@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { addList } from '../actions/addList'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import {Link} from 'react-router-dom'
 
 
 class ListInput extends Component {
@@ -57,6 +58,7 @@ class ListInput extends Component {
                     />
                     <input type="submit" />
                 </form>
+                <Link to={"/"}>Main Page</Link>
             </div>
         )
     }

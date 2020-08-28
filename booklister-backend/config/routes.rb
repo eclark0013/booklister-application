@@ -4,8 +4,8 @@ Rails.application.routes.draw do
       resources :users do
         resources :book_lists
         resources :lists
-        resources :books
       end
+      resources :books
     end
   end
   

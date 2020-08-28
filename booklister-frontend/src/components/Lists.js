@@ -8,7 +8,8 @@ const Lists = (props) => {
                 <ul>
                     {props.lists.map(list => <li key={list.id}><Link to={`/lists/${list.id}`}> {list.name} </Link></li>)}
                 </ul>
-            <Link to={`/lists/new`}> New List Input Page</Link>
+            <Link to={`/lists/new`}> New List </Link><br/>
+            <Link to={"/"}>Main Page</Link>
         </div>
     )
 }

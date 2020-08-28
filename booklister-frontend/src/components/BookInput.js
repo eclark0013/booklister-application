@@ -1,69 +1,70 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-// import { addList } from '../actions/addList'
-// import TextField from '@material-ui/core/TextField';
-// import Autocomplete from '@material-ui/lab/Autocomplete';
+import { addBook } from '../actions/addBook'
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import {Link} from 'react-router-dom'
+
 
 
 class BookInput extends Component {
     
-    // state = {
-    //     name: "",
-    //     note: "",
-    //     books: []
-    // }
+    state = {
+        title: "",
+        author: "",
+        note: "",
+        lists: []
+    }
 
-    // handleChange = (event) => {
-    //     this.setState({
-    //         [event.target.name]: event.target.value
-    //     })
-    // }
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
 
-    // handleSubmit = (event) => {
-    //     event.preventDefault()
-    //     let currentBooks = Array.prototype.slice.call(document.getElementsByClassName("MuiChip-label")).map(e => e.innerText)
-    //     let listData = this.state
-    //     listData.books = currentBooks
-    //     this.props.addList(listData)
-    //     document.querySelector('[title="Clear"]').click() // removes books from input field
-    //     this.setState( state => {
-    //         return({
-    //             name: "",
-    //             note: ""
-    //         })
-    //     })
-    //     console.log("handle submit function completed")
-    // }
+    handleSubmit = (event) => {
+        event.preventDefault()
+        let currentLists = Array.prototype.slice.call(document.getElementsByClassName("MuiChip-label")).map(e => e.innerText)
+        let book = this.state
+        book.lists = currentLists
+        this.props.addBook(book)
+        document.querySelector('[title="Clear"]').click() // removes books from input field
+        this.setState( state => {
+            return({
+                title: "",
+                author: "",
+                note: ""
+            })
+        })
+        console.log("handle submit function completed")
+    }
     
-    // render() {
-    //     return (
-    //         <div>
-    //             List Input Form
-    //             <form onSubmit={this.handleSubmit}>
-    //                 <label>List name: </label>
-    //                 <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
-    //                 <br />
-    //                 <label>Note: </label>
-    //                 <input type="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
-    //                 <p>Select books...</p> 
-    //                 <Autocomplete
-    //                     multiple
-    //                     id="book-selection-box"
-    //                     name="book"
-    //                     options={this.props.lists[0].books}
-    //                     getOptionLabel={(option) => `${option.title}`} // by ${option.author} ?
-    //                     style={{ width: 300 }}
-    //                     renderInput={(params) => <TextField {...params} label="Book" variant="outlined"/>}
-    //                 />
-    //                 <input type="submit" />
-    //             </form>
-    //         </div>
-    //     )
-    // }
-    render () {
+    render() {
         return (
             <div>
-                Book Input
+                Book Input Form
+                <form onSubmit={this.handleSubmit}>
+                    <label>Book title: </label>
+                    <input type="text" placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange}/>
+                    <br />
+                    <label>Author: </label>
+                    <input type="text" placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange}/>
+                    <br />
+                    <label>Note: </label>
+                    <input type="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
+                    <p>Select lists to add this book to...</p> 
+                    <Autocomplete
+                        multiple
+                        id="list-selection-box"
+                        name="list"
+                        options={this.props.lists}
+                        getOptionLabel={(option) => `${option.name}`} // by ${option.author} ?
+                        style={{ width: 300 }}
+                        renderInput={(params) => <TextField {...params} label="Lists" variant="outlined"/>}
+                    />
+                    <input type="submit" />
+                </form>
+                <Link to={"/"}>Main Page</Link>
             </div>
         )
     }
@@ -73,4 +74,4 @@ const mapStateToProps = state => {
     return state
 }
 
-export default connect(mapStateToProps, null)(BookInput)
+export default connect(mapStateToProps, {addBook})(BookInput)

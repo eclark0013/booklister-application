@@ -1,4 +1,5 @@
-export const addBook = (book) => {
+export const addList = (list) => {
+    // possible because of thunk
     return (dispatch) => { 
         let configObj = {
             method: "POST",
@@ -6,17 +7,16 @@ export const addBook = (book) => {
               "Content-Type": "application/json",
               "Accept": "application/json"
             },
-            body: JSON.stringify(book)
+            body: JSON.stringify(list)
           };
-        fetch("http://localhost:3000/api/v1/books", configObj)
+        fetch("http://localhost:3000/api/v1/users/1/lists", configObj)
             .then(response => {
                 return response.json();
             })
-            .then(book => {
-                debugger
+            .then(list => {
                 dispatch({
-                    type: "ADD_BOOK",
-                    payload: book
+                    type: "ADD_LIST",
+                    payload: list
                 })
             })
             .catch(function(error) {

@@ -12,6 +12,10 @@ class Api::V1::BooksController < ApplicationController
     def create
         book = Book.new(book_params)
         if book.save
+            params["lists"].each do |list_name|
+                list = List.find_by(name: list_name)
+                BookList.create(book_id: book.id, list_id: list.id, user_id: 1)
+            end
             render json: book
         else
             render json: book.errors
