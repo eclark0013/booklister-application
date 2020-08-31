@@ -5,10 +5,7 @@ import {Link} from 'react-router-dom'
 const Home = (props) => {
     return(
         <div>
-            Welcome to main page!<br/>
-                <Link to={'/lists/new'}>New List</Link><br/>
-                <Link to={'/lists/'}>All Lists</Link><br/>
-                <Link to={'/books/new'}>New Book</Link><br/>
+            Welcome to main page, full of important main page information stuff...!<br/>
         </div>
     )
 }   

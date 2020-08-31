@@ -23,6 +23,16 @@ class App extends Component {
     if(this.props.lists){
       return (
         <div>
+          BOOK lister
+          <div>
+            Navigation Links:
+            <ul>
+              <li><Link to={'/'}>Home</Link></li>
+              <li><Link to={'/lists/'}>All Lists</Link></li>
+              <li><Link to={'/lists/new'}>New List</Link></li>
+              <li><Link to={'/books/new'}>New Book</Link></li>
+            </ul>
+          </div>
           <Switch>
             <Route path='/lists/new' component={ListInput} />
             <Route path='/lists/:id' render={(routerProps) => <List {...routerProps} lists={this.props.lists}/>} />

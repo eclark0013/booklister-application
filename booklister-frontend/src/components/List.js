@@ -23,7 +23,8 @@ const List = (props) => { // using {list} instead of props and then calling prop
     
     return (
         <div>
-            Name: {list.name}
+            LIST PAGE< br/>
+            List name: {list.name}
             <br />
             {displayListNote(list)}
             Books:
