@@ -7,7 +7,8 @@ import {Link} from 'react-router-dom'
 
 
 class ListInput extends Component {
-    
+    bookOptions = this.props.lists[0].books
+
     state = {
         name: "",
         note: "",
@@ -22,18 +23,52 @@ class ListInput extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        let currentBooks = Array.prototype.slice.call(document.getElementsByClassName("MuiChip-label")).map(e => e.innerText)
-        let listData = this.state
-        listData.books = currentBooks
-        this.props.addList(listData)
+        this.props.addList(this.state)
         document.querySelector('[title="Clear"]').click() // removes books from input field
         this.setState( state => {
             return({
                 name: "",
-                note: ""
+                note: "",
+                books: []
             })
         })
         console.log("handle submit function completed")
+    }
+
+    handleBookChoiceOnChange = (event) => {
+        if (event.currentTarget.className.baseVal) {
+            // unselecting a single book
+            let unselectedBook = event.target.parentElement.parentNode.innerText
+            let oldStateBooks = [...this.state.books]
+            let newStateBooks = oldStateBooks.filter(book => book !== unselectedBook)
+            this.setState({
+                books: newStateBooks
+            })
+        }
+        else if (event.currentTarget.ariaLabel){
+            // unselecting all books
+            this.setState({books: []})
+        }
+        else {
+            // selecting a book
+            let selectedBook = Array.prototype.slice.call(document.getElementsByClassName("MuiAutocomplete-option")).filter(element => element.getAttribute("data-focus") === 'true')[0].innerText
+            let oldStateBooks = [...this.state.books]
+            if (oldStateBooks.includes(selectedBook)){
+                let newStateBooks = oldStateBooks.filter(book => book !== selectedBook)
+                this.setState({
+                    books: newStateBooks
+                })
+            }
+            else {
+                this.setState({
+                    books: oldStateBooks.concat(selectedBook)
+                })
+            }  
+        }
+    }
+
+    handleBookChoiceOnInputChange = (event) => {
+        // debugger
     }
     
     render() {
@@ -48,6 +83,8 @@ class ListInput extends Component {
                     <input type="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
                     <p>Select books...</p> 
                     <Autocomplete
+                        onChange={this.handleBookChoiceOnChange}
+                        // onInputChange={this.handleBookChoiceOnInputChange}
                         multiple
                         id="book-selection-box"
                         name="book"
