@@ -66,10 +66,6 @@ class ListInput extends Component {
             }  
         }
     }
-
-    handleBookChoiceOnInputChange = (event) => {
-        // debugger
-    }
     
     render() {
         return (
@@ -84,7 +80,6 @@ class ListInput extends Component {
                     <p>Select books...</p> 
                     <Autocomplete
                         onChange={this.handleBookChoiceOnChange}
-                        // onInputChange={this.handleBookChoiceOnInputChange}
                         multiple
                         id="book-selection-box"
                         name="book"

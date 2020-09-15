@@ -16,7 +16,8 @@ class Api::V1::BooksController < ApplicationController
                 list = List.find_by(name: list_name)
                 BookList.create(book_id: book.id, list_id: list.id, user_id: 1)
             end
-            render json: book
+            # render json: book
+            render json: {id: book.id, title: book.title, author: book.author, note: book.note, lists: book.lists}
         else
             render json: book.errors
         end

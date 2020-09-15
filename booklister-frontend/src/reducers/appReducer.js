@@ -9,7 +9,15 @@ export default function appReducer(state = {
             return {...state, lists: state.lists.concat(action.payload)}
         case 'ADD_BOOK':
             console.log("you made it to the add_book")
-            return state
+            console.log(state)
+            let copiedState = JSON.parse(JSON.stringify(state))
+            let listlessBook = JSON.parse(JSON.stringify(action.payload))
+            delete listlessBook.lists
+            for (let i = 0; i < action.payload.lists.length; i++) {
+                let targetList = copiedState.lists.find(list => list.name === action.payload.lists[i].name).books
+                targetList.push(listlessBook)
+            }
+            return copiedState
         default: 
             console.log("default reducer case hit")
         return state;

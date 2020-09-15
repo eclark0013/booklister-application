@@ -13,7 +13,6 @@ export const addBook = (book) => {
                 return response.json();
             })
             .then(book => {
-                debugger
                 dispatch({
                     type: "ADD_BOOK",
                     payload: book
