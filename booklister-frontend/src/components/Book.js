@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import {Redirect, Link} from 'react-router-dom'
 
 const Book = (props) => {
@@ -22,8 +21,5 @@ const Book = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return state
-}
 
-export default connect(mapStateToProps)(Book)
+export default Book

@@ -4,6 +4,8 @@ import { addList } from '../actions/addList'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import {Link} from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 class ListInput extends Component {
@@ -88,7 +90,8 @@ class ListInput extends Component {
                         style={{ width: 300 }}
                         renderInput={(params) => <TextField {...params} label="Book" variant="outlined"/>}
                     />
-                    <input type="submit" />
+                    {/* <input type="submit" /> */}
+                    <Button type='submit'>Submit</Button>
                 </form>
                 <Link to={"/"}>Main Page</Link>
             </div>

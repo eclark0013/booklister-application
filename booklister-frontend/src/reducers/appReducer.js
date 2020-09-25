@@ -13,8 +13,8 @@ export default function appReducer(state = {
             let copiedState = JSON.parse(JSON.stringify(state))
             let listlessBook = JSON.parse(JSON.stringify(action.payload))
             delete listlessBook.lists
-            for (const listToAdd of action.payload.lists) {
-                let targetList = copiedState.lists.find(list => list.name === listToAdd.name).books
+            for (const payloadList of action.payload.lists) {
+                let targetList = copiedState.lists.find(stateList => stateList.name === payloadList.name).books
                 targetList.push(listlessBook)
             }
             return copiedState
