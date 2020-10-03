@@ -4,7 +4,7 @@ import { addList } from '../actions/addList'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import {Link} from 'react-router-dom'
-import Button from 'react-bootstrap/Button'
+import {Button, Form, Container} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -73,6 +73,37 @@ class ListInput extends Component {
         return (
             <div>
                 List Input Form
+
+
+                <div>New Form</div>
+                <Container fluid='lg'>
+                    <Form onSubmit={this.handleSubmit}>
+                        <Form.Label>List name: </Form.Label>
+                        <Form.Control type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
+                        <br />
+                        <Form.Label>Note: </Form.Label>
+                        <Form.Control as="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
+                        <br />
+                        <Form.Label>Add Books:</Form.Label> 
+                        <Autocomplete
+                            onChange={this.handleBookChoiceOnChange}
+                            multiple
+                            id="book-selection-box"
+                            name="book"
+                            options={this.props.lists[0].books}
+                            getOptionLabel={(option) => `${option.title}`} // by ${option.author} ?
+                            style={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Book" variant="outlined"/>}
+                        />
+                        {/* <input type="submit" /> */}
+                        <Form.Group>
+                            <Button variant='primary' type='submit'>Submit</Button>
+                        </Form.Group>
+                    </Form>
+                </Container>
+
+                <br /><br />
+
                 <form onSubmit={this.handleSubmit}>
                     <label>List name: </label>
                     <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
