@@ -4,6 +4,8 @@ import { addBook } from '../actions/addBook'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import {Link} from 'react-router-dom'
+import {Button, Form, Container} from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 
@@ -72,29 +74,39 @@ class BookInput extends Component {
     render() {
         return (
             <div>
-                Book Input Form
-                <form onSubmit={this.handleSubmit}>
-                    <label>Book title: </label>
-                    <input type="text" placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange}/>
-                    <br />
-                    <label>Author: </label>
-                    <input type="text" placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange}/>
-                    <br />
-                    <label>Note: </label>
-                    <input type="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
-                    <p>Select lists to add this book to...</p> 
-                    <Autocomplete
-                        onChange={this.handleListChoiceOnChange}
-                        multiple
-                        id="list-selection-box"
-                        name="list"
-                        options={this.props.lists}
-                        getOptionLabel={(option) => `${option.name}`} // by ${option.author} ?
-                        style={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="Lists" variant="outlined"/>}
-                    />
-                    <input type="submit" />
-                </form>
+                New Book:
+                <Container fluid='lg'>
+                    <Form onSubmit={this.handleSubmit}>
+                        <Form.Group controlId="title">
+                            <Form.Label>Title: </Form.Label>
+                            <Form.Control type="text" placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange}/>
+                        </Form.Group>
+                        <Form.Group controlId="author">
+                            <Form.Label>Author: </Form.Label>
+                            <Form.Control type="text" placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange}/>
+                        </Form.Group>
+                        <Form.Group controlId="note">
+                            <Form.Label>Note: </Form.Label>
+                            <Form.Control as="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
+                        </Form.Group>
+                        <Form.Group controlId="lists">
+                            <Form.Label>Select lists to add this book to...</Form.Label> 
+                            <Autocomplete
+                                onChange={this.handleListChoiceOnChange}
+                                multiple
+                                id="list-selection-box"
+                                name="list"
+                                options={this.props.lists}
+                                getOptionLabel={(option) => `${option.name}`} // by ${option.author} ?
+                                style={{ width: 300 }}
+                                renderInput={(params) => <TextField {...params} label="Lists" variant="outlined"/>}
+                            />
+                        </Form.Group>
+                        <Form.Group>
+                            <Button variant='primary' type='submit'>Submit</Button>
+                        </Form.Group>
+                    </Form>
+                </Container>
                 <Link to={"/"}>Main Page</Link>
             </div>
         )
