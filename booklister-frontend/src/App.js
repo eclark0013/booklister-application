@@ -10,6 +10,8 @@ import Lists from './components/Lists'
 import List from './components/List'
 import Book from './components/Book'
 import Home from './components/Home'
+import {Navbar, NavDropdown, Nav} from 'react-bootstrap'
+
 
 
 class App extends Component {
@@ -23,15 +25,17 @@ class App extends Component {
     if(this.props.lists){
       return (
         <div>
-          BOOK lister
           <div>
-            Navigation Links:
-            <ul>
-              <li><Link to={'/'}>Home</Link></li>
-              <li><Link to={'/lists/'}>All Lists</Link></li>
-              <li><Link to={'/lists/new'}>New List</Link></li>
-              <li><Link to={'/books/new'}>New Book</Link></li>
-            </ul>
+            <Navbar bg="dark" variant="dark" sticky="top">
+              <Navbar.Brand href="/">Book Lister</Navbar.Brand>
+              <NavDropdown title="Lists" id="collapsible-nav-dropdown">
+                {this.props.lists.map( list => 
+                  <NavDropdown.Item eventKey={list.id} href={`/lists/${list.id}`}>{list.name}</NavDropdown.Item>
+                )}
+              </NavDropdown>
+              <Nav.Link href="/lists/new">New List</Nav.Link>
+              <Nav.Link href="/books/new">New Book</Nav.Link>
+            </Navbar>
           </div>
           <Switch>
             <Route path='/lists/new' component={ListInput} />

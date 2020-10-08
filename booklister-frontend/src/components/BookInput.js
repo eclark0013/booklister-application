@@ -15,6 +15,7 @@ class BookInput extends Component {
         title: "",
         author: "",
         note: "",
+        imageUrl: "",
         lists: []
     }
 
@@ -33,6 +34,7 @@ class BookInput extends Component {
                 title: "",
                 author: "",
                 note: "",
+                imageUrl: "",
                 lists: []
             })
         })
@@ -84,6 +86,10 @@ class BookInput extends Component {
                         <Form.Group controlId="author">
                             <Form.Label>Author: </Form.Label>
                             <Form.Control type="text" placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange}/>
+                        </Form.Group>
+                        <Form.Group controlId="imageUrl">
+                            <Form.Label>Image URL: </Form.Label>
+                            <Form.Control type="imageUrl" placeholder="Image URL" name="imageUrl" value={this.state.imageUrl} onChange={this.handleChange}/>
                         </Form.Group>
                         <Form.Group controlId="note">
                             <Form.Label>Note: </Form.Label>

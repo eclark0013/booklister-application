@@ -10,14 +10,16 @@ class Api::V1::BooksController < ApplicationController
     end
 
     def create
+        binding.pry
         book = Book.new(book_params)
+        binding/pry
         if book.save
             params["lists"].each do |list_name|
                 list = List.find_by(name: list_name)
                 BookList.create(book_id: book.id, list_id: list.id, user_id: 1)
             end
             # render json: book
-            render json: {id: book.id, title: book.title, author: book.author, note: book.note, image_url:book.image_url lists: book.lists}
+            render json: {id: book.id, title: book.title, author: book.author, note: book.note, image_url: book.image_url, lists: book.lists}
         else
             render json: book.errors
         end

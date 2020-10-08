@@ -10,6 +10,7 @@ const Book = (props) => {
     }
     return (
         <div>
+            Image: <img src={book.image_url} width="200" />
             <div>Title: {book.title} </div>
             <div>Author: {book.author} </div>
             <div>Note: {book.note}</div>
