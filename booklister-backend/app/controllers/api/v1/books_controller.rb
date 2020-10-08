@@ -17,7 +17,7 @@ class Api::V1::BooksController < ApplicationController
                 BookList.create(book_id: book.id, list_id: list.id, user_id: 1)
             end
             # render json: book
-            render json: {id: book.id, title: book.title, author: book.author, note: book.note, lists: book.lists}
+            render json: {id: book.id, title: book.title, author: book.author, note: book.note, image_url:book.image_url lists: book.lists}
         else
             render json: book.errors
         end

@@ -38,7 +38,7 @@ class App extends Component {
             <Route path='/lists/:id' render={(routerProps) => <List {...routerProps} lists={this.props.lists}/>} />
             <Route path='/lists' render={(routerProps) => <Lists {...routerProps} lists={this.props.lists}/>} />
             <Route path='/books/new' component={BookInput} />
-            <Route path='/books/:id' render={(routerProps) => <Book {...routerProps} />} />
+            <Route path='/books/:id' render={(routerProps) => <Book {...routerProps} lists={this.props.lists}/>} />
             <Route path='/' component={Home} />
           </Switch>
         </div>

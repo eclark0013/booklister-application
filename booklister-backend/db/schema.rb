@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_07_14_174918) do
     t.string "title"
     t.string "author"
     t.string "note"
+    t.string "image_url", default: "https://images.freeimages.com/images/large-previews/b9e/second-hand-books-1562964.jpg"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
