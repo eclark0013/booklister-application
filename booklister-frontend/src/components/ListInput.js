@@ -72,58 +72,36 @@ class ListInput extends Component {
     render() {
         return (
             <div>
-                List Input Form
+                New List:
 
-
-                <div>New Form</div>
                 <Container fluid='lg'>
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Label>List name: </Form.Label>
-                        <Form.Control type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
-                        <br />
-                        <Form.Label>Note: </Form.Label>
-                        <Form.Control as="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
-                        <br />
-                        <Form.Label>Add Books:</Form.Label> 
-                        <Autocomplete
-                            onChange={this.handleBookChoiceOnChange}
-                            multiple
-                            id="book-selection-box"
-                            name="book"
-                            options={this.props.lists[0].books}
-                            getOptionLabel={(option) => `${option.title}`} // by ${option.author} ?
-                            style={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="Book" variant="outlined"/>}
-                        />
-                        {/* <input type="submit" /> */}
+                        <Form.Group controlId="name">
+                            <Form.Label>Name: </Form.Label>
+                            <Form.Control type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
+                        </Form.Group>
+                        <Form.Group controlId="note">
+                            <Form.Label>Note: </Form.Label>
+                            <Form.Control as="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
+                        </Form.Group>
+                        <Form.Group controlId="books">
+                            <Form.Label>Add Books:</Form.Label> 
+                            <Autocomplete
+                                onChange={this.handleBookChoiceOnChange}
+                                multiple
+                                id="book-selection-box"
+                                name="book"
+                                options={this.props.lists[0].books}
+                                getOptionLabel={(option) => `${option.title}`} // by ${option.author} ?
+                                style={{ width: 300 }}
+                                renderInput={(params) => <TextField {...params} label="Book" variant="outlined"/>}
+                            />
+                        </Form.Group>
                         <Form.Group>
                             <Button variant='primary' type='submit'>Submit</Button>
                         </Form.Group>
                     </Form>
                 </Container>
-
-                <br /><br />
-
-                <form onSubmit={this.handleSubmit}>
-                    <label>List name: </label>
-                    <input type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
-                    <br />
-                    <label>Note: </label>
-                    <input type="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
-                    <p>Select books...</p> 
-                    <Autocomplete
-                        onChange={this.handleBookChoiceOnChange}
-                        multiple
-                        id="book-selection-box"
-                        name="book"
-                        options={this.props.lists[0].books}
-                        getOptionLabel={(option) => `${option.title}`} // by ${option.author} ?
-                        style={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label="Book" variant="outlined"/>}
-                    />
-                    {/* <input type="submit" /> */}
-                    <Button type='submit'>Submit</Button>
-                </form>
                 <Link to={"/"}>Main Page</Link>
             </div>
         )
