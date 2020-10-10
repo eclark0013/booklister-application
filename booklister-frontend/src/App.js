@@ -27,8 +27,10 @@ class App extends Component {
         <div>
           <div>
             <Navbar bg="dark" variant="dark" sticky="top">
-              <Navbar.Brand href="/">Book Lister</Navbar.Brand>
+              <Navbar.Brand href="/">Booklister</Navbar.Brand>
               <NavDropdown title="Lists" id="collapsible-nav-dropdown">
+                <NavDropdown.Item eventKey={0} href="/lists">All Lists</NavDropdown.Item>
+                <NavDropdown.Divider />
                 {this.props.lists.map( list => 
                   <NavDropdown.Item eventKey={list.id} href={`/lists/${list.id}`}>{list.name}</NavDropdown.Item>
                 )}

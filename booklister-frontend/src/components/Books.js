@@ -4,10 +4,6 @@ import {Container, Card, Button, Row, Col} from 'react-bootstrap'
 const Books = (props) => {
     return (
         <Container fluid="lg">
-            <div>
-                <script async src="https://cse.google.com/cse.js?cx=737199176fb4c1493"></script>
-                <div class="gcse-search"></div>
-            </div>
             <Row>
                 {props.books.map(book => 
                     <Col xs={4}>

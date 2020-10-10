@@ -2,6 +2,8 @@ import React from 'react'
 import {Redirect, Link} from 'react-router-dom'
 import Books from './Books'
 // import BooksContainer from '../containers/BooksContainer'
+import {Container, Row, Col} from 'react-bootstrap'
+
 
 const List = (props) => { // using {list} instead of props and then calling props.list is called "deconstruction"
     let list = props.lists.find(list => list.id.toString() === props.match.params.id)
@@ -13,7 +15,7 @@ const List = (props) => { // using {list} instead of props and then calling prop
     const displayListNote = (list) =>{
         if (list.note){
             return (
-                <div>Note: {list.note}</div>
+                <Row>Note: {list.note}</Row>
             )
         } 
         else {
@@ -22,17 +24,13 @@ const List = (props) => { // using {list} instead of props and then calling prop
     }
     
     return (
-        <div>
-            LIST PAGE< br/>
-            List name: {list.name}
-            <br />
+        <Container fl="lg">
+            <h1>{list.name}</h1>
             {displayListNote(list)}
-            Books:
-            <ul>    
-                <Books books={list.books}/>
-            </ul>
-            <Link to='/lists'>Back to Lists</Link>
-        </div>
+            <h4>Books:</h4>
+            <Books books={list.books}/>
+            <Link to='/lists'>All Lists</Link>
+        </Container>
     )
 }
 
