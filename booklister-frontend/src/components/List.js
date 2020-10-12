@@ -24,7 +24,7 @@ const List = (props) => { // using {list} instead of props and then calling prop
     }
     
     return (
-        <Container fl="lg">
+        <Container fluid="xl">
             <h1>{list.name}</h1>
             {displayListNote(list)}
             <h4>Books:</h4>
