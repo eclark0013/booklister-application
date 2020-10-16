@@ -18,6 +18,11 @@ export default function appReducer(state = {
                 targetList.push(listlessBook)
             }
             return copiedState
+        case 'EDIT_BOOK':
+            console.log("you made it to the edit_book")
+            console.log(state)
+            let edit_book_state = JSON.parse(JSON.stringify(state))
+            return edit_book_state
         default: 
             console.log("default reducer case hit")
         return state;

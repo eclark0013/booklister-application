@@ -25,6 +25,10 @@ class Api::V1::BooksController < ApplicationController
         end
     end
 
+    def edit
+        binding.pry
+    end
+
     def destroy
         book = Book.find(params[:id])
         book.destroy

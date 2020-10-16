@@ -14,7 +14,7 @@ const Book = (props) => {
             
             <Row>
                 <Col>
-                    <img src={book.image_url} width="200" />
+                    <img src={book.image_url} width="400" />
                 </Col>
                 <Col>
                     <Row>
@@ -23,7 +23,8 @@ const Book = (props) => {
                     <Row>
                         <h2>Author: {book.author} </h2>
                     </Row>
-                    <p>Note: {book.note}</p>
+                    <h5>Note:</h5> 
+                    <p>{book.note}</p>
                     <div>A part of the following lists:</div> 
                     <ul>
                         {props.lists.filter(list => list.books.filter(book_check => book_check.id === book.id).length > 0).map(

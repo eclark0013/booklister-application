@@ -8,6 +8,7 @@ import BookInput from './components/BookInput'
 import ListInput from './components/ListInput'
 import Lists from './components/Lists'
 import List from './components/List'
+import BookEdit from './components/BookEdit'
 import Book from './components/Book'
 import Home from './components/Home'
 import {Navbar, NavDropdown, Nav} from 'react-bootstrap'
@@ -44,6 +45,7 @@ class App extends Component {
             <Route path='/lists/:id' render={(routerProps) => <List {...routerProps} lists={this.props.lists}/>} />
             <Route path='/lists' render={(routerProps) => <Lists {...routerProps} lists={this.props.lists}/>} />
             <Route path='/books/new' component={BookInput} />
+            <Route path='/books/:id/edit' render={(routerProps) => <BookEdit {...routerProps} lists={this.props.lists}/>} />
             <Route path='/books/:id' render={(routerProps) => <Book {...routerProps} lists={this.props.lists}/>} />
             <Route path='/' component={Home} />
           </Switch>
