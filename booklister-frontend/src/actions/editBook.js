@@ -1,5 +1,6 @@
 export const editBook = (book) => {
-    return (dispatch) => { 
+    return (dispatch) => {     
+        book.lists = book.lists.map(list => list.id)
         let configObj = {
             method: "PATCH",
             headers: {
@@ -13,10 +14,11 @@ export const editBook = (book) => {
                 return response.json();
             })
             .then(book => {
-                dispatch({
-                    type: "EDIT_BOOK",
-                    payload: book
-                })
+                console.log("Patch fetch request has been sent and returned")
+                // dispatch({
+                //     type: "EDIT_BOOK",
+                //     payload: book
+                // })
             })
             .catch(function(error) {
                 console.log(error);

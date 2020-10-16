@@ -25,8 +25,18 @@ class Api::V1::BooksController < ApplicationController
         end
     end
 
-    def edit
-        binding.pry
+    def update
+        book = Book.find(book_params[:id])
+        if book
+            book.update(book_params)
+            binding.pry
+            # params.lists.each do |list|
+            #     binding,pry
+            #     "hi"
+            # end
+        else
+            render json: book.errors
+        end
     end
 
     def destroy
@@ -37,6 +47,6 @@ class Api::V1::BooksController < ApplicationController
 
     private
     def book_params
-        params.require(:book).permit(:title, :author, :note)
+        params.require(:book).permit(:id, :title, :author, :note, :image_url, :lists)
     end
 end
