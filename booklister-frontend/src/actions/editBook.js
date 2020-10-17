@@ -15,10 +15,6 @@ export const editBook = (book) => {
             })
             .then(book => {
                 console.log("Patch fetch request has been sent and returned")
-                // dispatch({
-                //     type: "EDIT_BOOK",
-                //     payload: book
-                // })
             })
             .catch(function(error) {
                 console.log(error);

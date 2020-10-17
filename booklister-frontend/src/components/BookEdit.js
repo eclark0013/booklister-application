@@ -54,6 +54,7 @@ class BookEdit extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.editBook(this.state)
+        // <Redirect to={"/books/" + this.state.id} />
         // document.querySelector('[title="Clear"]').click() // removes books from input field
         // this.setState( state => {
         //     return({

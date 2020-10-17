@@ -29,11 +29,19 @@ class Api::V1::BooksController < ApplicationController
         book = Book.find(book_params[:id])
         if book
             book.update(book_params)
-            binding.pry
-            # params.lists.each do |list|
-            #     binding,pry
-            #     "hi"
-            # end
+            submitted_list_ids = params[:lists]
+            submitted_list_ids.each do |list| #create BookList relation for new lists that the book should be added to
+                book_list = BookList.where(book_id: book.id, list_id: list)
+                if book_list.size === 0
+                    BookList.create(book_id: book.id, list_id: list)
+                end
+            end
+            BookList.where(book_id: book.id).each do |current_list_for_book| #delete BookList relations when a submitted list id cannot be found for a current relation
+                if !submitted_list_ids.include?(current_list_for_book.list_id)
+                    current_list_for_book.destroy
+                end
+            end
+            render json: book
         else
             render json: book.errors
         end
