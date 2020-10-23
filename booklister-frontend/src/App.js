@@ -12,6 +12,7 @@ import BookEdit from './components/BookEdit'
 import Book from './components/Book'
 import Home from './components/Home'
 import {Navbar, NavDropdown, Nav} from 'react-bootstrap'
+import './app.css'
 
 
 
@@ -26,20 +27,18 @@ class App extends Component {
     if(this.props.lists){
       return (
         <div>
-          <div>
-            <Navbar bg="dark" variant="dark" sticky="top">
-              <Navbar.Brand href="/">Booklister</Navbar.Brand>
-              <NavDropdown title="Lists" id="collapsible-nav-dropdown">
-                <NavDropdown.Item eventKey={0} href="/lists">All Lists</NavDropdown.Item>
-                <NavDropdown.Divider />
-                {this.props.lists.map( list => 
-                  <NavDropdown.Item eventKey={list.id} href={`/lists/${list.id}`}>{list.name}</NavDropdown.Item>
-                )}
-              </NavDropdown>
-              <Nav.Link href="/lists/new">New List</Nav.Link>
-              <Nav.Link href="/books/new">New Book</Nav.Link>
-            </Navbar>
-          </div>
+          <Navbar id="navbar" bg="dark" variant="dark" sticky="top">
+            <Navbar.Brand href="/">Booklister</Navbar.Brand>
+            <NavDropdown title="Lists" id="collapsible-nav-dropdown">
+              <NavDropdown.Item eventKey={0} href="/lists">All Lists</NavDropdown.Item>
+              <NavDropdown.Divider />
+              {this.props.lists.map( list => 
+                <NavDropdown.Item eventKey={list.id} href={`/lists/${list.id}`}>{list.name}</NavDropdown.Item>
+              )}
+            </NavDropdown>
+            <Nav.Link href="/lists/new">New List</Nav.Link>
+            <Nav.Link href="/books/new">New Book</Nav.Link>
+          </Navbar>
           <Switch>
             <Route path='/lists/new' component={ListInput} />
             <Route path='/lists/:id' render={(routerProps) => <List {...routerProps} lists={this.props.lists}/>} />

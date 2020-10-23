@@ -1,1 +1,4 @@
-figure out why list edits aren't being recognized in a book edit using books_controller
+- make all books a defualt list that books cannot be removed from and are automatically added to when created
+- edit page for lists
+- delete option for books and lists 
+- more seed data

@@ -1,20 +1,20 @@
 import React from 'react'
 import {Redirect, Link} from 'react-router-dom'
-import {Container, Row, Col} from 'react-bootstrap'
+import {Container, Row, Col, Image} from 'react-bootstrap'
 
 const Book = (props) => {
     let list = props.lists[0]
     let book = list.books.find(book => book.id.toString() === props.match.params.id)
+
     console.log(book)
     if(!book) {
         return (<Redirect to="/lists" />) // Write in error to show at top of page?
     }
     return (
-        <Container fluid="sm">
-            
+        <Container fluid>
             <Row>
-                <Col>
-                    <img src={book.image_url} width="400" />
+                <Col style={{ maxWidth: "300px" }}>
+                    <Image src={book.image_url} thumbnail/>
                 </Col>
                 <Col>
                     <Row>
