@@ -1,9 +1,3 @@
-User
-- Has many book-lists
-- Has many lists through book-lists
-- Has many books through book-lists
-- :username - string, :password_digest - string
-
 Book
 - Has many book-lists
 - Has many lists through book-lists
@@ -19,3 +13,10 @@ Book-List
 - Belongs to a list
 - Belongs to a user
 - :book_id - integer, :list_id - integer, :user_id - integer
+
+in the future...
+User
+- Has many book-lists
+- Has many lists through book-lists
+- Has many books through book-lists
+- :username - string, :password_digest - string

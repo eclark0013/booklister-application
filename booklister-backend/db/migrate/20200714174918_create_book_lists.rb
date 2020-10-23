@@ -3,7 +3,6 @@ class CreateBookLists < ActiveRecord::Migration[6.0]
     create_table :book_lists do |t|
       t.integer :book_id
       t.integer :list_id
-      t.integer :user_id
 
       t.timestamps
     end

@@ -9,7 +9,7 @@ export const addList = (list) => {
             },
             body: JSON.stringify(list)
           };
-        fetch("http://localhost:3000/api/v1/users/1/lists", configObj)
+        fetch("http://localhost:3000/api/v1/lists", configObj)
             .then(response => {
                 return response.json();
             })

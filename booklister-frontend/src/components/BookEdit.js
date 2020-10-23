@@ -69,11 +69,12 @@ class BookEdit extends Component {
     }
 
     handleListChoiceOnChange = (event) => {
+        console.log("you changed something with the lists")
         if (event.currentTarget.className.baseVal) {
             // unselecting a single list
-            let unselectedList = event.target.parentElement.parentNode.innerText
+            let unselectedList = event.target.parentElement.outerText || event.target.parentElement.parentNode.innerText
             let oldStateLists = [...this.state.lists]
-            let newStateLists = oldStateLists.filter(list => list !== unselectedList)
+            let newStateLists = oldStateLists.filter(list => list.name !== unselectedList)
             this.setState({
                 lists: newStateLists
             })
@@ -84,7 +85,8 @@ class BookEdit extends Component {
         }
         else {
             // selecting a list
-            let selectedList = Array.prototype.slice.call(document.getElementsByClassName("MuiAutocomplete-option")).filter(element => element.getAttribute("data-focus") === 'true')[0].innerText
+            let selectedListName = Array.prototype.slice.call(document.getElementsByClassName("MuiAutocomplete-option")).filter(element => element.getAttribute("data-focus") === 'true')[0].innerText
+            let selectedList = this.props.lists.find(list => list.name === selectedListName)
             let oldStateLists = [...this.state.lists]
             if (oldStateLists.includes(selectedList)){
                 let newStateLists = oldStateLists.filter(lists => lists !== selectedList)

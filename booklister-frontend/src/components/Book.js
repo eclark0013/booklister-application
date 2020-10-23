@@ -31,6 +31,7 @@ const Book = (props) => {
                             list => <li key={list.id}><Link to={`/lists/${list.id}`}> {list.name} </Link></li>
                         )}
                     </ul>
+                    <Link to={`/books/${book.id}/edit`}>Edit Book</Link>
                 </Col>
             </Row>
         </Container>
