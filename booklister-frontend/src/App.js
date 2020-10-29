@@ -25,6 +25,7 @@ class App extends Component {
   
   render() {
     if(this.props.lists){
+      console.log(this.props.all_books_list.books)
       return (
         <div>
           <Navbar id="navbar" bg="dark" variant="dark" sticky="top">
@@ -37,6 +38,13 @@ class App extends Component {
               )}
             </NavDropdown>
             <Nav.Link href="/lists/new">New List</Nav.Link>
+            <NavDropdown title="Books" id="collapsible-nav-dropdown">
+              <NavDropdown.Item eventKey={0} href="/lists/1">All Books</NavDropdown.Item>
+              <NavDropdown.Divider />
+              {this.props.all_books_list.books.map( book => 
+                <NavDropdown.Item eventKey={book.id} href={`/books/${book.id}`}>{book.title}</NavDropdown.Item>
+              )}
+            </NavDropdown>
             <Nav.Link href="/books/new">New Book</Nav.Link>
           </Navbar>
           <Switch>
@@ -44,8 +52,9 @@ class App extends Component {
             <Route path='/lists/:id' render={(routerProps) => <List {...routerProps} lists={this.props.lists}/>} />
             <Route path='/lists' render={(routerProps) => <Lists {...routerProps} lists={this.props.lists}/>} />
             <Route path='/books/new' component={BookInput} />
-            <Route path='/books/:id/edit' render={(routerProps) => <BookEdit {...routerProps} lists={this.props.lists}/>} />
+            <Route path='/books/:id/edit' render={(routerProps) => <BookEdit {...routerProps} standard_lists={this.props.standard_lists} all_books_list = {this.props.all_books_list}/>} />
             <Route path='/books/:id' render={(routerProps) => <Book {...routerProps} lists={this.props.lists}/>} />
+            {/* <Route path='/books/' render={(routerProps) => <Book {...routerProps} lists={this.props.lists}/>} /> */}
             <Route path='/' component={Home} />
           </Switch>
         </div>

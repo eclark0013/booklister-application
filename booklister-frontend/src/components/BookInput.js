@@ -102,7 +102,7 @@ class BookInput extends Component {
                                 multiple
                                 id="list-selection-box"
                                 name="list"
-                                options={this.props.lists}
+                                options={this.props.lists.filter(list => list.name !== "All Books")}
                                 getOptionLabel={(option) => `${option.name}`} // by ${option.author} ?
                                 style={{ width: 300 }}
                                 renderInput={(params) => <TextField {...params} label="Lists" variant="outlined"/>}

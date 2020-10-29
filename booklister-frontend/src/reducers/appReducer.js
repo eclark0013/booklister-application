@@ -3,7 +3,7 @@ export default function appReducer(state = {
     switch (action.type) {
         case 'FETCH_LISTS':
             console.log("you made it to the FETCH_LISTS reducer case")
-            return {lists: action.payload.lists}
+            return {lists: action.payload.lists, standard_lists: action.payload.lists.filter(list => list.id !== 1), all_books_list: action.payload.lists[0]}
         case 'ADD_LIST':
             console.log("you made it to the add_list")
             return {...state, lists: state.lists.concat(action.payload)}

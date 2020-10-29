@@ -1,4 +1,6 @@
-- make all books a defualt list that books cannot be removed from and are automatically added to when created
 - edit page for lists
 - delete option for books and lists 
-- more seed data
+- redirect to book page after finishing an edit or creating a new book
+- handle input errors (such as naming a new list the same thing as an old one or as "All Books" in particular)
+- route "/books" to a List page of all books
+    - on the list page when you are finding which list to display (presumably based on list_id), check for id and if there is none, set the default to be the all_books 

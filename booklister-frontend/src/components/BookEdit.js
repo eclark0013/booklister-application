@@ -10,13 +10,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 class BookEdit extends Component {
-    
-    // let list = props.lists[0]
-    // let book = list.books.find(book => book.id.toString() === props.match.params.id)
-    // console.log(book)
-    // if(!book) {
-    //     return (<Redirect to="/lists" />) // Write in error to show at top of page?
-    // }
 
     state = {
         id: "",
@@ -41,7 +34,7 @@ class BookEdit extends Component {
             author: book.author,
             note: book.note,
             image_url: book.image_url,
-            lists: this.props.lists.filter(list => list.books.filter(book_check => book_check.id === book.id).length > 0)
+            lists: this.props.standard_lists.filter(list => list.books.filter(book_check => book_check.id === book.id).length > 0)
         })
     }
 
@@ -53,7 +46,11 @@ class BookEdit extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.editBook(this.state)
+        this.setState(({
+            lists: [...this.state.lists, this.props.all_books_list]
+        }), () => {
+            this.props.editBook(this.state)
+        })
         // <Redirect to={"/books/" + this.state.id} />
         // document.querySelector('[title="Clear"]').click() // removes books from input field
         // this.setState( state => {
@@ -124,7 +121,7 @@ class BookEdit extends Component {
                             <Form.Group controlId="image_url">
                                 <Form.Label>Image URL: </Form.Label>
                                 <Form.Control type="image_url" placeholder="Image URL" name="image_url" value={this.state.image_url} onChange={this.handleChange}/>
-                                <img src={this.state.image_url} height="120px"/>
+                                <img src={this.state.image_url} height="120px" alt=""/>
                             </Form.Group>
                             <Form.Group controlId="note">
                                 <Form.Label>Note: </Form.Label>
@@ -137,7 +134,7 @@ class BookEdit extends Component {
                                     multiple
                                     id="list-selection-box"
                                     name="list"
-                                    options={this.props.lists}
+                                    options={this.props.standard_lists}
                                     getOptionLabel={(option) => `${option.name}`} // by ${option.author} ?
                                     defaultValue={this.state.lists}
                                     style={{ width: 300 }}
