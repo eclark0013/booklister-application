@@ -64,9 +64,9 @@ class ListEdit extends Component {
     handleBookChoiceOnChange = (event) => {
         if (event.currentTarget.className.baseVal) {
             // unselecting a single book
-            let unselectedBook = event.target.parentElement.parentNode.innerText
+            let unselectedBookTitle = event.target.parentElement.innerText || event.target.parentElement.parentNode.innerText
             let oldStateBooks = [...this.state.books]
-            let newStateBooks = oldStateBooks.filter(book => book !== unselectedBook)
+            let newStateBooks = oldStateBooks.filter(book => book.title !== unselectedBookTitle)
             this.setState({
                 books: newStateBooks
             })
