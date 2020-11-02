@@ -2,7 +2,7 @@ import React from 'react'
 import {Redirect, Link} from 'react-router-dom'
 import Books from './Books'
 // import BooksContainer from '../containers/BooksContainer'
-import {Container, Row, Col} from 'react-bootstrap'
+import {Container, Row} from 'react-bootstrap'
 
 
 const List = (props) => { // using {list} instead of props and then calling props.list is called "deconstruction"

@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { addList } from '../actions/addList'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import {Link} from 'react-router-dom'
 import {Button, Form, Container} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -53,7 +52,8 @@ class ListInput extends Component {
         }
         else {
             // selecting a book
-            let selectedBook = Array.prototype.slice.call(document.getElementsByClassName("MuiAutocomplete-option")).filter(element => element.getAttribute("data-focus") === 'true')[0].innerText
+            let selectedBookTitle = Array.prototype.slice.call(document.getElementsByClassName("MuiAutocomplete-option")).filter(element => element.getAttribute("data-focus") === 'true')[0].innerText
+            let selectedBook = this.props.all_books_list.books.find(book => book.title === selectedBookTitle)
             let oldStateBooks = [...this.state.books]
             if (oldStateBooks.includes(selectedBook)){
                 let newStateBooks = oldStateBooks.filter(book => book !== selectedBook)
@@ -102,7 +102,6 @@ class ListInput extends Component {
                         </Form.Group>
                     </Form>
                 </Container>
-                <Link to={"/"}>Main Page</Link>
             </div>
         )
     }

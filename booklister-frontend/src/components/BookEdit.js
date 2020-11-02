@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { editBook } from '../actions/editBook'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import {Redirect, Link} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import {Button, Form, Container} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -21,8 +21,7 @@ class BookEdit extends Component {
     }
 
     componentDidMount() {
-        let list = this.props.lists[0]
-        let book = list.books.find(book => book.id.toString() === this.props.match.params.id)
+        let book = this.props.all_books_list.books.find(book => book.id.toString() === this.props.match.params.id)
         console.log(book)
         if(!book) {
             return (<Redirect to="/lists" />) // Write in error to show at top of page?
@@ -146,7 +145,6 @@ class BookEdit extends Component {
                             </Form.Group>
                         </Form>
                     </Container> 
-                    <Link to={"/"}>Main Page</Link>
                 </div>
             )
         }

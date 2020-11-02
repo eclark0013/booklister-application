@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import {fetchLists} from './actions/fetchLists'
 // import BooksContainer from './containers/BooksContainer'
 // import ListsContainer from './containers/ListsContainer';
-import {Switch, Route, Link} from 'react-router-dom'
-import BookInput from './components/BookInput'
+import {Switch, Route} from 'react-router-dom'
+import ListEdit from './components/ListEdit'
 import ListInput from './components/ListInput'
 import Lists from './components/Lists'
 import List from './components/List'
 import BookEdit from './components/BookEdit'
+import BookInput from './components/BookInput'
 import Book from './components/Book'
 import Home from './components/Home'
 import {Navbar, NavDropdown, Nav} from 'react-bootstrap'
@@ -34,7 +35,7 @@ class App extends Component {
               <NavDropdown.Item eventKey={0} href="/lists">All Lists</NavDropdown.Item>
               <NavDropdown.Divider />
               {this.props.lists.map( list => 
-                <NavDropdown.Item eventKey={list.id} href={`/lists/${list.id}`}>{list.name}</NavDropdown.Item>
+                <NavDropdown.Item key={list.id} href={`/lists/${list.id}`}>{list.name}</NavDropdown.Item>
               )}
             </NavDropdown>
             <Nav.Link href="/lists/new">New List</Nav.Link>
@@ -42,13 +43,14 @@ class App extends Component {
               <NavDropdown.Item eventKey={0} href="/lists/1">All Books</NavDropdown.Item>
               <NavDropdown.Divider />
               {this.props.all_books_list.books.map( book => 
-                <NavDropdown.Item eventKey={book.id} href={`/books/${book.id}`}>{book.title}</NavDropdown.Item>
+                <NavDropdown.Item key={book.id} href={`/books/${book.id}`}>{book.title}</NavDropdown.Item>
               )}
             </NavDropdown>
             <Nav.Link href="/books/new">New Book</Nav.Link>
           </Navbar>
           <Switch>
-            <Route path='/lists/new' component={ListInput} />
+            <Route path='/lists/new' render={(routerProps) => <ListInput {...routerProps} standard_lists={this.props.standard_lists} all_books_list = {this.props.all_books_list}/>}  />
+            <Route path='/lists/:id/edit' render={(routerProps) => <ListEdit {...routerProps} standard_lists={this.props.standard_lists} all_books_list = {this.props.all_books_list}/>} />
             <Route path='/lists/:id' render={(routerProps) => <List {...routerProps} lists={this.props.lists}/>} />
             <Route path='/lists' render={(routerProps) => <Lists {...routerProps} lists={this.props.lists}/>} />
             <Route path='/books/new' component={BookInput} />

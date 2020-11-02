@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { addBook } from '../actions/addBook'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import {Button, Form, Container} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -113,7 +113,6 @@ class BookInput extends Component {
                         </Form.Group>
                     </Form>
                 </Container>
-                <Link to={"/"}>Main Page</Link>
             </div>
         )
     }
