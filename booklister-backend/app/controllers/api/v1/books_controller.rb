@@ -35,9 +35,9 @@ class Api::V1::BooksController < ApplicationController
                     BookList.create(book_id: book.id, list_id: list)
                 end
             end
-            BookList.where(book_id: book.id).each do |current_list_for_book| #delete BookList relations when a submitted list id cannot be found for a current relation
-                if !submitted_list_ids.include?(current_list_for_book.list_id)
-                    current_list_for_book.destroy
+            BookList.where(book_id: book.id).each do |book_list| #delete BookList relations when a submitted list id cannot be found for a current relation
+                if !submitted_list_ids.include?(book_list.list_id)
+                    book_list.destroy
                 end
             end
             render json: book

@@ -9,7 +9,26 @@ class Api::V1::ListsController < ApplicationController
     end
 
     def update
-        binding.pry
+        list = List.find(params[:list][:id])
+        if list
+            list.update(list_params)
+            submitted_book_ids = params[:books]
+            binding.pry
+            submitted_book_ids.each do |book| #create BookList relation for new books that the list should now have
+                book_list = BookList.where(book_id: book, list_id: list)
+                if book_list.size === 0
+                    BookList.create(book_id: book, list_id: list)
+                end
+            end
+            BookList.where(list_id: list).each do |book_list| #delete BookList relations when a submitted book id cannot be found for a current relation
+                if !submitted_book_ids.include?(book_list.book_id)
+                    book_list.destroy
+                end
+            end
+            render json: list
+        else
+            render json: list.errors
+        end
     end
 
     def create
@@ -33,7 +52,7 @@ class Api::V1::ListsController < ApplicationController
 
     private
     def list_params
-        params.require(:list).permit(:name, :note)
+        params.require(:list).permit(:id, :name, :note)
     end
 
     def books_params

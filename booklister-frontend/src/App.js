@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import {fetchLists} from './actions/fetchLists'
 // import BooksContainer from './containers/BooksContainer'
-// import ListsContainer from './containers/ListsContainer';
+import ListContainer from './containers/ListContainer';
 import {Switch, Route} from 'react-router-dom'
 import ListEdit from './components/ListEdit'
 import ListInput from './components/ListInput'
@@ -50,8 +50,10 @@ class App extends Component {
           </Navbar>
           <Switch>
             <Route path='/lists/new' render={(routerProps) => <ListInput {...routerProps} standard_lists={this.props.standard_lists} all_books_list = {this.props.all_books_list}/>}  />
-            <Route path='/lists/:id/edit' render={(routerProps) => <ListEdit {...routerProps} standard_lists={this.props.standard_lists} all_books_list = {this.props.all_books_list}/>} />
-            <Route path='/lists/:id' render={(routerProps) => <List {...routerProps} lists={this.props.lists}/>} />
+            <Route path='/lists/:id/edit' render={(routerProps) => <ListContainer {...routerProps} componentToLoad={"edit"} standard_lists={this.props.standard_lists} all_books_list = {this.props.all_books_list}/>} />
+            <Route path='/lists/:id' render={(routerProps) => <ListContainer {...routerProps} componentToLoad={"show"} lists={this.props.lists}/>} />
+            {/* <Route path='/lists/:id/edit' render={(routerProps) => <ListEdit {...routerProps} standard_lists={this.props.standard_lists} all_books_list = {this.props.all_books_list}/>} />
+            <Route path='/lists/:id' render={(routerProps) => <List {...routerProps} lists={this.props.lists}/>} /> */}
             <Route path='/lists' render={(routerProps) => <Lists {...routerProps} lists={this.props.lists}/>} />
             <Route path='/books/new' component={BookInput} />
             <Route path='/books/:id/edit' render={(routerProps) => <BookEdit {...routerProps} standard_lists={this.props.standard_lists} all_books_list = {this.props.all_books_list}/>} />

@@ -13,7 +13,12 @@ export const editList = (list) => {
             .then(response => {
                 return response.json();
             })
-            .then(book => {
+            .then(list => {
+                console.log(list)
+                // dispatch({
+                //     type: "ADD_LIST",
+                //     payload: list
+                // })
                 console.log("Patch fetch request has been sent and returned to edit list")
             })
             .catch(function(error) {

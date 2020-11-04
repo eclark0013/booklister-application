@@ -17,14 +17,15 @@ class BookEdit extends Component {
         author: "",
         note: "",
         image_url: "",
-        lists: []
+        lists: [],
+        redirectToReferrer: false
     }
 
     componentDidMount() {
         let book = this.props.all_books_list.books.find(book => book.id.toString() === this.props.match.params.id)
         console.log(book)
         if(!book) {
-            return (<Redirect to="/lists" />) // Write in error to show at top of page?
+            return (<Redirect to="/lists/1" />) // Write in error to show at top of page?
         }
         book.id = parseInt(this.props.match.params.id)
         this.setState({
@@ -46,7 +47,8 @@ class BookEdit extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         this.setState(({
-            lists: [...this.state.lists, this.props.all_books_list]
+            lists: [...this.state.lists, this.props.all_books_list],
+            redirectToReferrer: true
         }), () => {
             this.props.editBook(this.state)
         })
@@ -100,6 +102,9 @@ class BookEdit extends Component {
 
     
     render() {
+        if (this.state.redirectToReferrer) {
+            return <Redirect to={"/books/" + this.state.id} />
+        }
         if(!this.state.title) {
             return null
         }
@@ -134,7 +139,7 @@ class BookEdit extends Component {
                                     id="list-selection-box"
                                     name="list"
                                     options={this.props.standard_lists}
-                                    getOptionLabel={(option) => `${option.name}`} // by ${option.author} ?
+                                    getOptionLabel={(option) => `${option.name}`}
                                     defaultValue={this.state.lists}
                                     style={{ width: 300 }}
                                     renderInput={(params) => <TextField {...params} label="Lists" variant="outlined"/>}

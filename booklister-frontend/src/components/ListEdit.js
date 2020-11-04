@@ -12,27 +12,28 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 class ListEdit extends Component {
 
     state = {
-        id: "",
-        name: "",
-        note: "",
-        books: []
+        id: this.props.list.id,
+        name: this.props.list.name,
+        note: this.props.list.note,
+        books: this.props.books,
+        redirectToReferrer: false
     }
 
-    componentDidMount() {
-        let list = this.props.standard_lists.find(list => list.id.toString() === this.props.match.params.id)
-        console.log(list)
-        if(!list || list.id === 1) {
-            return (<Redirect to="/lists" />) // Write in error to show at top of page?
-        }
-        list.id = parseInt(this.props.match.params.id)
-        list.note = list.note || ""
-        this.setState({
-            id: list.id,
-            name: list.name,
-            note: list.note,
-            books: list.books
-        })
-    }
+    // componentDidMount() {
+    //     let list = this.props.standard_lists.find(list => list.id.toString() === this.props.match.params.id)
+    //     console.log(list)
+    //     if(!list || list.id === 1) {
+    //         return (<Redirect to="/lists" />) // Write in error to show at top of page?
+    //     }
+    //     list.id = parseInt(this.props.match.params.id)
+    //     list.note = list.note || ""
+    //     this.setState({
+    //         id: list.id,
+    //         name: list.name,
+    //         note: list.note,
+    //         books: this.props.standard_lists.find(list => list.id.toString() === this.props.match.params.id).books
+    //     })
+    // }
 
     handleChange = (event) => {
         this.setState({
@@ -42,11 +43,11 @@ class ListEdit extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.setState(({
-            lists: [...this.state.lists, this.props.all_books_list]
-        }), () => {
-            this.props.editBook(this.state)
+        this.props.editList(this.state)
+        this.setState({
+            redirectToReferrer: true
         })
+        console.log("handle submit function on ListEdit has completed")
         // <Redirect to={"/books/" + this.state.id} />
         // document.querySelector('[title="Clear"]').click() // removes books from input field
         // this.setState( state => {
@@ -95,7 +96,11 @@ class ListEdit extends Component {
     }
     
     render() {
-        if(!this.state.books) {
+        if (this.state.redirectToReferrer) {
+            return <Redirect to={"/lists/" + this.state.id} />
+        }
+        debugger
+        if(this.state.books.length===0) {
             return null
         }
         else {
@@ -119,11 +124,11 @@ class ListEdit extends Component {
                                     multiple
                                     id="book-selection-box"
                                     name="book"
-                                    options={this.props.all_books_list.books}
+                                    options={this.props.allBooks}
                                     getOptionLabel={(option) => `${option.title}`} // by ${option.author} ?
-                                    value={this.state.books}
+                                    defaultValue={this.state.books}
                                     style={{ width: 300 }}
-                                    renderInput={(params) => <TextField {...params} label="Book" variant="outlined"/>}
+                                    renderInput={(params) => <TextField {...params} label="Books" variant="outlined"/>}
                                 />
                             </Form.Group>
                             <Form.Group>

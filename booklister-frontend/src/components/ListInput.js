@@ -33,7 +33,7 @@ class ListInput extends Component {
                 books: []
             })
         })
-        console.log("handle submit function completed")
+        console.log("handle submit function on ListInput has completed")
     }
 
     handleBookChoiceOnChange = (event) => {
