@@ -96,10 +96,11 @@ class ListEdit extends Component {
     }
     
     render() {
+        let books = this.props.allBooks
+        debugger
         if (this.state.redirectToReferrer) {
             return <Redirect to={"/lists/" + this.state.id} />
         }
-        debugger
         if(this.state.books.length===0) {
             return null
         }
@@ -124,9 +125,9 @@ class ListEdit extends Component {
                                     multiple
                                     id="book-selection-box"
                                     name="book"
-                                    options={this.props.allBooks}
-                                    getOptionLabel={(option) => `${option.title}`} // by ${option.author} ?
-                                    defaultValue={this.state.books}
+                                    options={books}
+                                    getOptionLabel={option => option.title} // by ${option.author} ?
+                                    defaultValue={books.filter(book => this.state.books.filter(bookFromState => bookFromState.id === book.id).length > 0)}
                                     style={{ width: 300 }}
                                     renderInput={(params) => <TextField {...params} label="Books" variant="outlined"/>}
                                 />
