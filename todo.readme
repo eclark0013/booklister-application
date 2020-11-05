@@ -1,17 +1,10 @@
 Before submission necessary
-- edit page for lists
-- delete option for books and lists 
+- delete option for lists 
 - redirect to book page after finishing an edit or creating a new book
-- even with defaultValue being used instead of value, when you edit lists the initial books are not chosen from the options
-- add dispatches to edit list and edit book that make changes to the Redux store so that updates happen immediately after editing
-- Set up ListsConatiner and BooksContainer to make fetches to backend and then send down the fetched data via props to the individual List or Book as data readily-packaged COULD SOLVE SOME EDIT LIST ISSUES
+- add dispatches to edit list and edit book and delete book that make changes to the Redux store so that updates happen immediately after editing
 
 After submission
 - backspace is not recognized on Autocomplete section of form as a way to delete the last option in the list
 - route "/books" to a List page of all books
     - on the list page when you are finding which list to display (presumably based on list_id), check for id and if there is none, set the default to be the all_books 
 - handle input errors (such as naming a new list the same thing as an old one or as "All Books" in particular)
-- after edits, changes are only available on page reload
-
-
-CONITINNUE TO WORK ON LISTEDIT AND DEBUG

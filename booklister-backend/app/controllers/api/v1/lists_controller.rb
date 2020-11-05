@@ -13,7 +13,6 @@ class Api::V1::ListsController < ApplicationController
         if list
             list.update(list_params)
             submitted_book_ids = params[:books]
-            binding.pry
             submitted_book_ids.each do |book| #create BookList relation for new books that the list should now have
                 book_list = BookList.where(book_id: book, list_id: list)
                 if book_list.size === 0
@@ -45,8 +44,11 @@ class Api::V1::ListsController < ApplicationController
     end
 
     def destroy
-        list = List.find(params[:id])
-        list.destroy
+        binding.pry
+        BookList.where(list_id: list_params[:id]).each do |book_list| #delete BookList relations when a submitted list id cannot be found for a current relation
+            book_list.destroy
+        end
+        List.find(list_params[:id]).destroy
         render json: List.all
     end
 

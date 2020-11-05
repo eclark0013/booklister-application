@@ -17,6 +17,15 @@ export default function appReducer(state = {
         case 'EDIT_BOOK':
             let edit_book_state = JSON.parse(JSON.stringify(state))
             return edit_book_state
+        case 'EDIT_LIST':
+            let edit_list_state = JSON.parse(JSON.stringify(state))
+            return edit_list_state
+        case 'DELETE_BOOK':
+            let delete_book_state = JSON.parse(JSON.stringify(state))
+            return delete_book_state
+        case 'DELETE_LIST':
+            let delete_list_state = JSON.parse(JSON.stringify(state))
+            return delete_list_state
         default: 
             console.log("default reducer case hit")
         return state;

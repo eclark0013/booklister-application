@@ -4,7 +4,8 @@ import { editBook } from '../actions/editBook'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import {Redirect} from 'react-router-dom'
-import {Button, Form, Container} from 'react-bootstrap'
+import {Button, Form, Container, Row, Col} from 'react-bootstrap'
+import DeleteObject from './DeleteObject'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -145,11 +146,18 @@ class BookEdit extends Component {
                                     renderInput={(params) => <TextField {...params} label="Lists" variant="outlined"/>}
                                 />
                             </Form.Group>
-                            <Form.Group>
-                                <Button variant='primary' type='submit'>Submit</Button>
-                            </Form.Group>
+                            <Row>
+                                <Col >
+                                    <Form.Group>
+                                        <Button variant='primary' type='submit'>Submit Changes</Button>
+                                    </Form.Group>
+                                </Col>
+                                <Col >
+                                    <DeleteObject object_type="book" object={this.state}/>
+                                </Col>
+                            </Row>
                         </Form>
-                    </Container> 
+                    </Container>
                 </div>
             )
         }

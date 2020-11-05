@@ -4,10 +4,9 @@ import { editList } from '../actions/editList'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import {Redirect} from 'react-router-dom'
-import {Button, Form, Container} from 'react-bootstrap'
+import {Button, Form, Container, Row, Col} from 'react-bootstrap'
+import DeleteObject from './DeleteObject'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
-
 
 class ListEdit extends Component {
 
@@ -18,22 +17,6 @@ class ListEdit extends Component {
         books: this.props.books,
         redirectToReferrer: false
     }
-
-    // componentDidMount() {
-    //     let list = this.props.standard_lists.find(list => list.id.toString() === this.props.match.params.id)
-    //     console.log(list)
-    //     if(!list || list.id === 1) {
-    //         return (<Redirect to="/lists" />) // Write in error to show at top of page?
-    //     }
-    //     list.id = parseInt(this.props.match.params.id)
-    //     list.note = list.note || ""
-    //     this.setState({
-    //         id: list.id,
-    //         name: list.name,
-    //         note: list.note,
-    //         books: this.props.standard_lists.find(list => list.id.toString() === this.props.match.params.id).books
-    //     })
-    // }
 
     handleChange = (event) => {
         this.setState({
@@ -47,19 +30,6 @@ class ListEdit extends Component {
         this.setState({
             redirectToReferrer: true
         })
-        console.log("handle submit function on ListEdit has completed")
-        // <Redirect to={"/books/" + this.state.id} />
-        // document.querySelector('[title="Clear"]').click() // removes books from input field
-        // this.setState( state => {
-        //     return({
-        //         title: "",
-        //         author: "",
-        //         note: "",
-        //         imageU_url: "",
-        //         lists: []
-        //     })
-        // })
-        // console.log("handle submit function completed")
     }
 
     handleBookChoiceOnChange = (event) => {
@@ -96,8 +66,7 @@ class ListEdit extends Component {
     }
     
     render() {
-        let books = this.props.allBooks
-        debugger
+        let allBooks = this.props.allBooks
         if (this.state.redirectToReferrer) {
             return <Redirect to={"/lists/" + this.state.id} />
         }
@@ -125,16 +94,23 @@ class ListEdit extends Component {
                                     multiple
                                     id="book-selection-box"
                                     name="book"
-                                    options={books}
+                                    options={allBooks}
                                     getOptionLabel={option => option.title} // by ${option.author} ?
-                                    defaultValue={books.filter(book => this.state.books.filter(bookFromState => bookFromState.id === book.id).length > 0)}
+                                    defaultValue={allBooks.filter(book => this.state.books.filter(bookFromState => bookFromState.id === book.id).length > 0)}
                                     style={{ width: 300 }}
                                     renderInput={(params) => <TextField {...params} label="Books" variant="outlined"/>}
                                 />
                             </Form.Group>
-                            <Form.Group>
-                                <Button variant='primary' type='submit'>Submit</Button>
-                            </Form.Group>
+                            <Row>
+                                <Col >
+                                    <Form.Group>
+                                        <Button variant='primary' type='submit'>Submit Changes</Button>
+                                    </Form.Group>
+                                </Col>
+                                <Col >
+                                    <DeleteObject object_type="list" object={this.state}/>
+                                </Col>
+                            </Row>
                         </Form>
                     </Container>
                 </div>
@@ -142,8 +118,6 @@ class ListEdit extends Component {
         }
     }
 }
-
-
 
 const mapStateToProps = state => {
     return state

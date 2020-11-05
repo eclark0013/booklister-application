@@ -47,8 +47,10 @@ class Api::V1::BooksController < ApplicationController
     end
 
     def destroy
-        book = Book.find(params[:id])
-        book.destroy
+        BookList.where(book_id: book_params[:id]).each do |book_list| #delete BookList relations when a submitted list id cannot be found for a current relation
+            book_list.destroy
+        end
+        Book.find(book_params[:id]).destroy
         render json: Book.all
     end
 
