@@ -58,6 +58,7 @@ class App extends Component {
             <Route path='/books/new' component={BookInput} />
             <Route path='/books/:id/edit' render={(routerProps) => <BookEdit {...routerProps} standard_lists={this.props.standard_lists} all_books_list = {this.props.all_books_list}/>} />
             <Route path='/books/:id' render={(routerProps) => <Book {...routerProps} lists={this.props.lists}/>} />
+            <Route path='/books' render={(routerProps) => <ListContainer {...routerProps} componentToLoad={"show"} lists={this.props.lists}/>} />
             {/* <Route path='/books/' render={(routerProps) => <Book {...routerProps} lists={this.props.lists}/>} /> */}
             <Route path='/' component={Home} />
           </Switch>

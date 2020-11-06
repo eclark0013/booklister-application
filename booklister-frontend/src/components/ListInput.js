@@ -4,6 +4,7 @@ import { addList } from '../actions/addList'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import {Button, Form, Container} from 'react-bootstrap'
+import { Redirect } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -13,7 +14,8 @@ class ListInput extends Component {
     state = {
         name: "",
         note: "",
-        books: []
+        books: [],
+        redirectToReferrer: false
     }
 
     handleChange = (event) => {
@@ -26,12 +28,8 @@ class ListInput extends Component {
         event.preventDefault()
         this.props.addList(this.state)
         document.querySelector('[title="Clear"]').click() // removes books from input field
-        this.setState( state => {
-            return({
-                name: "",
-                note: "",
-                books: []
-            })
+        this.setState({
+            redirectToReferrer: true
         })
         console.log("handle submit function on ListInput has completed")
     }
@@ -70,6 +68,9 @@ class ListInput extends Component {
     }
     
     render() {
+        if (this.state.redirectToReferrer) {
+            return <Redirect to={"/lists"} />
+        }
         return (
             <div>
                 New List:

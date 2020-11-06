@@ -33,9 +33,8 @@ class Api::V1::ListsController < ApplicationController
     def create
         list = List.new(list_params)
         if list.save
-            params["books"].each do |book_title|
-                book = Book.find_by(title: book_title)
-                BookList.create(book_id: book.id, list_id: list.id)
+            params["books"].each do |book|
+                BookList.create(book_id: book[:id], list_id: list.id)
             end
             render json: list
         else
@@ -44,7 +43,6 @@ class Api::V1::ListsController < ApplicationController
     end
 
     def destroy
-        binding.pry
         BookList.where(list_id: list_params[:id]).each do |book_list| #delete BookList relations when a submitted list id cannot be found for a current relation
             book_list.destroy
         end

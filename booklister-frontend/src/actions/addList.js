@@ -1,6 +1,9 @@
 export const addList = (list) => {
-    // possible because of thunk
     return (dispatch) => { 
+        dispatch({
+            type: "START_ADD_LIST",
+            payload: list
+        })
         let configObj = {
             method: "POST",
             headers: {

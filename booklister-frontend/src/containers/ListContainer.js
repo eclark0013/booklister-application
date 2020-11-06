@@ -15,7 +15,13 @@ class ListContainer extends Component {
     }
 
     componentDidMount(){
-        let list = this.props.lists.find(list => list.id.toString() === this.props.match.params.id)
+        let list
+        if (this.props.match.path === "/books") {
+            list = this.props.lists[0]
+        }
+        else {
+            list = this.props.lists.find(list => list.id.toString() === this.props.match.params.id)
+        }
         this.setState({
             mounted: true,
             list: list,

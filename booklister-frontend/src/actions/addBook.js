@@ -1,5 +1,9 @@
 export const addBook = (book) => {
-    return (dispatch) => { 
+    return (dispatch) => {         
+        dispatch({
+            type: "START_ADD_BOOK",
+            payload: book
+        })
         let configObj = {
             method: "POST",
             headers: {

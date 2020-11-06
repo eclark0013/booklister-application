@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 // import {Link} from 'react-router-dom'
 import {Button, Form, Container} from 'react-bootstrap'
+import { Redirect } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -16,7 +17,8 @@ class BookInput extends Component {
         author: "",
         note: "",
         image_url: "",
-        lists: []
+        lists: [],
+        redirectToReferrer: false,
     }
 
     handleChange = (event) => {
@@ -28,17 +30,9 @@ class BookInput extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.addBook(this.state)
-        document.querySelector('[title="Clear"]').click() // removes books from input field
-        this.setState( state => {
-            return({
-                title: "",
-                author: "",
-                note: "",
-                image_url: "",
-                lists: []
-            })
+        this.setState({
+            redirectToReferrer: true
         })
-        console.log("handle submit function completed")
     }
 
     handleListChoiceOnChange = (event) => {
@@ -74,6 +68,9 @@ class BookInput extends Component {
     }
     
     render() {
+        if (this.state.redirectToReferrer) {
+            return <Redirect to={"/books"} />
+        }
         return (
             <div>
                 New Book:
