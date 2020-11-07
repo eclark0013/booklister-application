@@ -1,5 +1,9 @@
 export const deleteList = (list) => {
     return (dispatch) => {     
+        dispatch({
+            type: "START_DELETE_LIST",
+            payload: list
+        })
         let configObj = {
             method: "DELETE",
             headers: {
@@ -13,7 +17,10 @@ export const deleteList = (list) => {
                 return response.json();
             })
             .then(list => {
-                console.log("Delete list fetch request has been sent and returned")
+                dispatch({
+                    type: "DELETE_LIST",
+                    payload: list
+                })
             })
             .catch(function(error) {
                 console.log(error);

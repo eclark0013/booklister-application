@@ -45,9 +45,18 @@ export default function appReducer(state = {
             return start_edit_list_state
         case 'EDIT_LIST':
             return {...state, requesting: false}
+        case 'START_DELETE_BOOK':
+            let start_delete_book_state = {...state, requesting: true}
+            let bookIndex = start_delete_book_state.all_books_list.books.findIndex(book => book.id === action.payload.id)
+            start_delete_book_state.all_books_list.books.splice(bookIndex, 1)
+            return start_delete_book_state
         case 'DELETE_BOOK':
-            let delete_book_state = JSON.parse(JSON.stringify(state))
-            return delete_book_state
+            return {...state, requesting: false}
+        case 'START_DELETE_LIST':
+            let start_delete_list_state = {...state, requesting: true}
+            let listIndex = start_delete_list_state.lists.findIndex(list => list.id === action.payload.id)
+            start_delete_list_state.lists.splice(listIndex, 1)
+            return start_delete_list_state
         case 'DELETE_LIST':
             let delete_list_state = JSON.parse(JSON.stringify(state))
             return delete_list_state

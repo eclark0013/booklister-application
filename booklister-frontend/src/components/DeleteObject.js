@@ -13,11 +13,11 @@ const DeleteObject = (props) => {
     const doSomething = () =>{ 
         if (props.object_type === "book"){
             props.deleteBook(props.object)
-            history.push("/home")
+            history.push("/books")
         }
         if (props.object_type === "list"){
             props.deleteList(props.object)
-            history.push("/home")
+            history.push("/lists")
         }
     }
 

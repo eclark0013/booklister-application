@@ -1,5 +1,9 @@
 export const deleteBook = (book) => {
     return (dispatch) => {     
+        dispatch({
+            type: "START_DELETE_BOOK",
+            payload: book
+        })
         let configObj = {
             method: "DELETE",
             headers: {
@@ -13,7 +17,10 @@ export const deleteBook = (book) => {
                 return response.json();
             })
             .then(book => {
-                console.log("Delete book fetch request has been sent and returned")
+                dispatch({
+                    type: "DELETE_BOOK",
+                    payload: book
+                })
             })
             .catch(function(error) {
                 console.log(error);
