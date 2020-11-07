@@ -1,8 +1,13 @@
-export default function appReducer(state = { 
+export default function appReducer(state = { requesting: true
   }, action) {
     switch (action.type) {
+        case 'START_FETCH_LISTS':
+            return {...state, requesting: true}
         case 'FETCH_LISTS':
-            return {lists: action.payload.lists, standard_lists: action.payload.lists.filter(list => list.id !== 1), all_books_list: action.payload.lists[0]}
+            let lists = action.payload.lists
+            let standard_lists = action.payload.lists.filter(list => list.id !== 1)
+            let all_books_list = action.payload.lists[0]
+            return {...state, lists, standard_lists, all_books_list, requesting: false}
         case 'START_ADD_LIST':
             let start_add_list_state = {...state, requesting: true}
             let new_list = action.payload
@@ -11,19 +16,19 @@ export default function appReducer(state = {
         case 'ADD_LIST':
             return {...state, requesting: false}
         case 'START_ADD_BOOK':
-            let start_add_book_state = JSON.parse(JSON.stringify(state))
-            let listlessBook = JSON.parse(JSON.stringify(action.payload))
+            let start_add_book_state = {...state, requesting: true}
+            let listlessBook = action.payload
             delete listlessBook.lists
             delete listlessBook.redirectToReferrer
-            let all_books_list = start_add_book_state.lists.find(list => list.name === "All Books")
+            let all_books_list_ = start_add_book_state.lists.find(list => list.name === "All Books")
             debugger
-            listlessBook.id = all_books_list.books[all_books_list.books.length-1].id+1
-            all_books_list.books.push(listlessBook)
+            listlessBook.id = all_books_list_.books[all_books_list_.books.length-1].id+1
+            all_books_list_.books.push(listlessBook)
             for (const payloadList of action.payload.lists) {
                 let targetList = start_add_book_state.lists.find(list => list.name === payloadList)
                 targetList.books.push(listlessBook)
             }
-            return {...start_add_book_state, requesting: true}
+            return start_add_book_state
         case 'ADD_BOOK':
             return {...state, requesting: false}
         case 'START_EDIT_BOOK':
@@ -58,8 +63,7 @@ export default function appReducer(state = {
             start_delete_list_state.lists.splice(listIndex, 1)
             return start_delete_list_state
         case 'DELETE_LIST':
-            let delete_list_state = JSON.parse(JSON.stringify(state))
-            return delete_list_state
+            return {...state, requesting: false}
         default: 
         return {...state};
     }

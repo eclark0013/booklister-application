@@ -1,6 +1,6 @@
 Before submission necessary
-- add dispatches to delete list/book that make changes to the Redux store so that updates happen immediately after editing
 - see if/how lists container and books container componets can/should be used
+- fill out BookContainer
 - check requirements one last time
 
 After submission
