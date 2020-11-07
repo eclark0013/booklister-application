@@ -13,13 +13,13 @@ class Api::V1::ListsController < ApplicationController
         if list
             list.update(list_params)
             submitted_book_ids = params[:books]
-            submitted_book_ids.each do |book| #create BookList relation for new books that the list should now have
-                book_list = BookList.where(book_id: book, list_id: list)
-                if book_list.size === 0
-                    BookList.create(book_id: book, list_id: list)
+            submitted_book_ids.each do |book| #create BookList relation for new books that must be added to list
+                book_list = BookList.find_by(book_id: book, list_id: list.id)
+                if !book_list
+                    BookList.create(book_id: book, list_id: list.id)
                 end
             end
-            BookList.where(list_id: list).each do |book_list| #delete BookList relations when a submitted book id cannot be found for a current relation
+            BookList.where(list_id: list.id).each do |book_list| #delete BookList relations when a submitted book id cannot be found for a current relation
                 if !submitted_book_ids.include?(book_list.book_id)
                     book_list.destroy
                 end

@@ -21,14 +21,9 @@ const DeleteObject = (props) => {
         }
     }
 
-    debugger
     return(
         <Button variant="warning" type="submit" onClick={doSomething}>{`Delete ${props.object_type}`}</Button>
     )
 }   
-
-// const mapStateToProps = state => {
-//     return state
-// }
 
 export default connect(null, {deleteBook, deleteList})(DeleteObject)

@@ -1,5 +1,9 @@
 export const editList = (list) => {
     return (dispatch) => {     
+        dispatch({
+            type: "START_EDIT_LIST",
+            payload: list
+        })
         list.books = list.books.map(book => book.id)
         let configObj = {
             method: "PATCH",
@@ -14,12 +18,10 @@ export const editList = (list) => {
                 return response.json();
             })
             .then(list => {
-                console.log(list)
-                // dispatch({
-                //     type: "ADD_LIST",
-                //     payload: list
-                // })
-                console.log("Patch fetch request has been sent and returned to edit list")
+                dispatch({
+                    type: "EDIT_LIST",
+                    payload: list
+                })
             })
             .catch(function(error) {
                 console.log(error);

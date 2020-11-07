@@ -3,8 +3,7 @@ import {Redirect, Link} from 'react-router-dom'
 import {Container, Row, Col, Image} from 'react-bootstrap'
 
 const Book = (props) => {
-    let list = props.lists[0]
-    let book = list.books.find(book => book.id.toString() === props.match.params.id)
+    let book = props.all_books_list.books.find(book => book.id.toString() === props.match.params.id)
 
     console.log(book)
     if(!book) {
@@ -27,9 +26,7 @@ const Book = (props) => {
                     <p>{book.note}</p>
                     <div>A part of the following lists:</div> 
                     <ul>
-                        {props.lists.filter(list => list.books.filter(book_check => book_check.id === book.id).length > 0).map(
-                            list => <li key={list.id}><Link to={`/lists/${list.id}`}> {list.name} </Link></li>
-                        )}
+                        {book.list_ids.map(list_id => <li key={list_id}><Link to={`/lists/${list_id}`}> {props.lists.find(list => list.id === list_id).name} </Link></li>)}
                     </ul>
                     <Link to={`/books/${book.id}/edit`}>Edit Book</Link>
                 </Col>

@@ -28,7 +28,7 @@ class Api::V1::BooksController < ApplicationController
         book = Book.find(book_params[:id])
         if book
             book.update(book_params)
-            submitted_list_ids = params[:lists]
+            submitted_list_ids = params[:list_ids]
             submitted_list_ids.each do |list| #create BookList relation for new lists that the book should be added to
                 book_list = BookList.where(book_id: book.id, list_id: list)
                 if book_list.size === 0

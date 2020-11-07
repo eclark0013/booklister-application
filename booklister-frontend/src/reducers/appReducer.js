@@ -3,7 +3,6 @@ export default function appReducer(state = {
     switch (action.type) {
         case 'FETCH_LISTS':
             return {lists: action.payload.lists, standard_lists: action.payload.lists.filter(list => list.id !== 1), all_books_list: action.payload.lists[0]}
-        
         case 'START_ADD_LIST':
             let start_add_list_state = {...state, requesting: true}
             let new_list = action.payload
@@ -27,12 +26,25 @@ export default function appReducer(state = {
             return {...start_add_book_state, requesting: true}
         case 'ADD_BOOK':
             return {...state, requesting: false}
+        case 'START_EDIT_BOOK':
+            let start_edit_book_state = {...state, requesting: true}
+            let bookToEdit = action.payload
+            bookToEdit.list_ids = action.payload.lists.map(list => list.id)
+            delete bookToEdit.lists
+            let book_index = start_edit_book_state.all_books_list.books.findIndex(book => book.id === action.payload.id)
+            start_edit_book_state.all_books_list.books[book_index] = bookToEdit
+            return start_edit_book_state
         case 'EDIT_BOOK':
-            let edit_book_state = JSON.parse(JSON.stringify(state))
-            return edit_book_state
+            return {...state, requesting: false}
+        case 'START_EDIT_LIST':
+            let start_edit_list_state = {...state, requesting: true}
+            let list = start_edit_list_state.lists.find(list => list.id === action.payload.id)
+            list.name = action.payload.name
+            list.note = action.payload.note
+            list.books = action.payload.books
+            return start_edit_list_state
         case 'EDIT_LIST':
-            let edit_list_state = JSON.parse(JSON.stringify(state))
-            return edit_list_state
+            return {...state, requesting: false}
         case 'DELETE_BOOK':
             let delete_book_state = JSON.parse(JSON.stringify(state))
             return delete_book_state
@@ -40,8 +52,7 @@ export default function appReducer(state = {
             let delete_list_state = JSON.parse(JSON.stringify(state))
             return delete_list_state
         default: 
-            console.log("default reducer case hit")
-        return state;
+        return {...state};
     }
   }
   

@@ -27,11 +27,9 @@ class ListInput extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.addList(this.state)
-        document.querySelector('[title="Clear"]').click() // removes books from input field
         this.setState({
             redirectToReferrer: true
         })
-        console.log("handle submit function on ListInput has completed")
     }
 
     handleBookChoiceOnChange = (event) => {
