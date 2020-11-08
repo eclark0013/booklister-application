@@ -1,6 +1,6 @@
 import React from 'react'
 import {Redirect, Link} from 'react-router-dom'
-import Books from './Books'
+import BookCardsContainer from '../containers/BookCardsContainer'
 // import BooksContainer from '../containers/BooksContainer'
 import {Container, Row, Col} from 'react-bootstrap'
 
@@ -30,7 +30,7 @@ const List = (props) => { // using {list} instead of props and then calling prop
             <h1>{list.name}</h1>
             {displayListNote(list)}
             <h4>Books:</h4>
-            <Books books={list.books}/>
+            <BookCardsContainer books={list.books}/>
             <Link to={`/lists/${list.id}/edit`}>Edit List</Link>
         </Container>
     )

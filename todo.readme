@@ -5,5 +5,6 @@ Before submission necessary
 - check requirements one last time
 
 After submission
+- add warning to delete page
 - backspace is not recognized on Autocomplete section of form as a way to delete the last option in the list
 - handle input errors (such as naming a new list the same thing as an old one or as "All Books" in particular)
