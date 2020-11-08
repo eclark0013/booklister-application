@@ -4,9 +4,7 @@ import {fetchLists} from './actions/fetchLists'
 // import BooksContainer from './containers/BooksContainer'
 import ListContainer from './containers/ListContainer';
 import {Switch, Route} from 'react-router-dom'
-import ListEdit from './components/ListEdit'
 import ListInput from './components/ListInput'
-import Lists from './components/Lists'
 // import List from './components/List'
 import './components/LoadingPage'
 import BookEdit from './components/BookEdit'
@@ -16,6 +14,7 @@ import Home from './components/Home'
 import {Navbar, NavDropdown, Nav} from 'react-bootstrap'
 import './app.css'
 import LoadingPage from './components/LoadingPage';
+import ListCardsContainer from './containers/ListCardsContainer';
 
 
 
@@ -54,12 +53,11 @@ class App extends Component {
             <Route path='/lists/new' render={(routerProps) => <ListInput {...routerProps} standard_lists={this.props.standard_lists} all_books_list = {this.props.all_books_list}/>}  />
             <Route path='/lists/:id/edit' render={(routerProps) => <ListContainer {...routerProps} componentToLoad={"edit"} />} />
             <Route path='/lists/:id' render={(routerProps) => <ListContainer {...routerProps} componentToLoad={"show"} />} />
-            <Route path='/lists' render={(routerProps) => <Lists {...routerProps} lists={this.props.lists}/>} />
+            <Route path='/lists' render={(routerProps) => <ListCardsContainer {...routerProps} />} />
             <Route path='/books/new' component={BookInput} />
             <Route path='/books/:id/edit' render={(routerProps) => <BookEdit {...routerProps} standard_lists={this.props.standard_lists} all_books_list = {this.props.all_books_list}/>} />
             <Route path='/books/:id' render={(routerProps) => <Book {...routerProps} lists={this.props.lists} all_books_list = {this.props.all_books_list}/>} />
             <Route path='/books' render={(routerProps) => <ListContainer {...routerProps} componentToLoad={"show"}/>} />
-            {/* <Route path='/books/' render={(routerProps) => <Book {...routerProps} lists={this.props.lists}/>} /> */}
             <Route path='/' component={Home} />
           </Switch>
         </div>
