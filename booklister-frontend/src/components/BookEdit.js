@@ -24,9 +24,8 @@ class BookEdit extends Component {
 
     componentDidMount() {
         let book = this.props.all_books_list.books.find(book => book.id.toString() === this.props.match.params.id)
-        console.log(book)
         if(!book) {
-            return (<Redirect to="/lists/1" />) // Write in error to show at top of page?
+            return (<Redirect to="/lists/1" />) 
         }
         book.id = parseInt(this.props.match.params.id)
         this.setState({
@@ -53,22 +52,9 @@ class BookEdit extends Component {
         }), () => {
             this.props.editBook(this.state)
         })
-        // <Redirect to={"/books/" + this.state.id} />
-        // document.querySelector('[title="Clear"]').click() // removes books from input field
-        // this.setState( state => {
-        //     return({
-        //         title: "",
-        //         author: "",
-        //         note: "",
-        //         imageU_url: "",
-        //         lists: []
-        //     })
-        // })
-        // console.log("handle submit function completed")
     }
 
     handleListChoiceOnChange = (event) => {
-        console.log("you changed something with the lists")
         if (event.currentTarget.className.baseVal) {
             // unselecting a single list
             let unselectedList = event.target.parentElement.outerText || event.target.parentElement.parentNode.innerText

@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import {fetchLists} from './actions/fetchLists'
-// import BooksContainer from './containers/BooksContainer'
 import ListContainer from './containers/ListContainer';
 import {Switch, Route} from 'react-router-dom'
 import ListInput from './components/ListInput'
-// import List from './components/List'
-import './components/LoadingPage'
 import BookEdit from './components/BookEdit'
 import BookInput from './components/BookInput'
 import Book from './components/Book'
 import Home from './components/Home'
 import {Navbar, NavDropdown, Nav} from 'react-bootstrap'
-import './app.css'
 import LoadingPage from './components/LoadingPage';
 import ListCardsContainer from './containers/ListCardsContainer';
-
-
+import './app.css'
 
 class App extends Component {  
   

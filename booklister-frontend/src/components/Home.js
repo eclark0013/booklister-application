@@ -1,6 +1,5 @@
 import React from 'react'
-import {Container, Row, Col, Image} from 'react-bootstrap'
-// import { connect } from 'react-redux'
+import {Container} from 'react-bootstrap'
 
 const Home = (props) => {
     return(

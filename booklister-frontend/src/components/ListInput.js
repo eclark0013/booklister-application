@@ -91,7 +91,7 @@ class ListInput extends Component {
                                 id="book-selection-box"
                                 name="book"
                                 options={this.props.lists[0].books}
-                                getOptionLabel={(option) => `${option.title}`} // by ${option.author} ?
+                                getOptionLabel={(option) => `${option.title}`}
                                 style={{ width: 300 }}
                                 renderInput={(params) => <TextField {...params} label="Book" variant="outlined"/>}
                             />

@@ -95,7 +95,7 @@ class ListEdit extends Component {
                                     id="book-selection-box"
                                     name="book"
                                     options={allBooks}
-                                    getOptionLabel={option => option.title} // by ${option.author} ?
+                                    getOptionLabel={option => option.title} 
                                     defaultValue={allBooks.filter(book => this.state.books.filter(bookFromState => bookFromState.id === book.id).length > 0)}
                                     style={{ width: 300 }}
                                     renderInput={(params) => <TextField {...params} label="Books" variant="outlined"/>}

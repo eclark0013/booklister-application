@@ -1,15 +1,14 @@
 import React from 'react'
 import {Redirect, Link} from 'react-router-dom'
 import BookCardsContainer from '../containers/BookCardsContainer'
-// import BooksContainer from '../containers/BooksContainer'
 import {Container, Row, Col} from 'react-bootstrap'
 
 
-const List = (props) => { // using {list} instead of props and then calling props.list is called "deconstruction"
+const List = (props) => { 
     let list = props.list
 
     if(!list) {
-        return (<Redirect to="/lists" />) // Write in error to show at top of page?
+        return (<Redirect to="/lists" />)
     }
 
     const displayListNote = (list) =>{

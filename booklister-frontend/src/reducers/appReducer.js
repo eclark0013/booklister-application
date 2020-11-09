@@ -24,10 +24,11 @@ export default function appReducer(state = { requesting: true
             debugger
             listlessBook.id = all_books_list_.books[all_books_list_.books.length-1].id+1
             all_books_list_.books.push(listlessBook)
-            for (const payloadList of action.payload.lists) {
-                let targetList = start_add_book_state.lists.find(list => list.name === payloadList)
-                targetList.books.push(listlessBook)
-            }
+            debugger
+            // for (const payloadList of action.payload.lists) {
+            //     let targetList = start_add_book_state.lists.find(list => list.name === payloadList)
+            //     targetList.books.push(listlessBook)
+            // }
             return start_add_book_state
         case 'ADD_BOOK':
             return {...state, requesting: false}

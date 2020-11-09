@@ -4,16 +4,17 @@ import {Container, Row, Col, Image} from 'react-bootstrap'
 
 const Book = (props) => {
     let book = props.all_books_list.books.find(book => book.id.toString() === props.match.params.id)
-
-    console.log(book)
     if(!book) {
-        return (<Redirect to="/lists" />) // Write in error to show at top of page?
+        return (<Redirect to="/lists" />)
+    }
+    const handleImgError = (event) => {
+        event.currentTarget.src="https://lh3.googleusercontent.com/proxy/cdorEzsjBEmJOexk6RgpUNcqI-snxPTuZilyQL_HaA1JwN2qGHrVPN9OcOHoVshH0c2odbB8I1QTXkHSyq5TEcN6UIR7B4fwsA"
     }
     return (
         <Container fluid>
             <Row>
                 <Col style={{ maxWidth: "300px" }}>
-                    <Image src={book.image_url} thumbnail/>
+                    <Image src={book.image_url} onError={handleImgError} thumbnail/>
                 </Col>
                 <Col>
                     <Row>

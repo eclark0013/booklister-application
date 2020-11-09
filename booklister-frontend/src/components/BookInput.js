@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { addBook } from '../actions/addBook'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-// import {Link} from 'react-router-dom'
 import {Button, Form, Container} from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -100,7 +99,7 @@ class BookInput extends Component {
                                 id="list-selection-box"
                                 name="list"
                                 options={this.props.lists.filter(list => list.name !== "All Books")}
-                                getOptionLabel={(option) => `${option.name}`} // by ${option.author} ?
+                                getOptionLabel={(option) => `${option.name}`} 
                                 style={{ width: 300 }}
                                 renderInput={(params) => <TextField {...params} label="Lists" variant="outlined"/>}
                             />
