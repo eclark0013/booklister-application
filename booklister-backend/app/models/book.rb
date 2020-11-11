@@ -12,9 +12,4 @@ class Book < ApplicationRecord
         self.lists.collect{|list| list.id}
     end
 
-    # def image_url=(img_url)
-    #     if img_url == ""
-    #         binding.pry
-    #     end
-    # end
 end
