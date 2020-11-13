@@ -17,18 +17,16 @@ export default function appReducer(state = { requesting: true
             return {...state, requesting: false}
         case 'START_ADD_BOOK':
             let start_add_book_state = {...state, requesting: true}
-            let listlessBook = action.payload
+            let listlessBook = {...action.payload}
             delete listlessBook.lists
             delete listlessBook.redirectToReferrer
-            let all_books_list_ = start_add_book_state.lists.find(list => list.name === "All Books")
-            debugger
-            listlessBook.id = all_books_list_.books[all_books_list_.books.length-1].id+1
-            all_books_list_.books.push(listlessBook)
-            debugger
-            // for (const payloadList of action.payload.lists) {
-            //     let targetList = start_add_book_state.lists.find(list => list.name === payloadList)
-            //     targetList.books.push(listlessBook)
-            // }
+            let all_books_List = start_add_book_state.lists.find(list => list.name === "All Books")
+            listlessBook.id = all_books_List.books[all_books_List.books.length-1].id+1
+            all_books_List.books.push(listlessBook)
+            for (const payloadList of action.payload.lists) {
+                let targetList = start_add_book_state.lists.find(list => list.name === payloadList)
+                targetList.books.push(listlessBook)
+            }
             return start_add_book_state
         case 'ADD_BOOK':
             return {...state, requesting: false}

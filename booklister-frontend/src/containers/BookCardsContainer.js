@@ -7,7 +7,7 @@ const BookCardsContainer = (props) => {
         <Container fluid>
             <Row className="justify-content-around">
                 {props.books.map(book => 
-                    <BookCard book={book} />
+                    <BookCard book={book} key={book.title}/>
                 )}
             </Row>
         </Container>

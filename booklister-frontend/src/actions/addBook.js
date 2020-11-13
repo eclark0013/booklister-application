@@ -1,6 +1,5 @@
 export const addBook = (book) => {
     return (dispatch) => {         
-        debugger
         dispatch({
             type: "START_ADD_BOOK",
             payload: book

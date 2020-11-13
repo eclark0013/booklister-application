@@ -35,7 +35,6 @@ class BookInput extends Component {
     }
 
     handleListChoiceOnChange = (event) => {
-        debugger
         if (event.currentTarget.className.baseVal) {
             // unselecting a single list
             let unselectedList = event.target.parentElement.parentNode.innerText

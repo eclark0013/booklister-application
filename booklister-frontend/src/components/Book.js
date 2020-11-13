@@ -8,7 +8,7 @@ const Book = (props) => {
         return (<Redirect to="/lists" />)
     }
     const handleImgError = (event) => {
-        event.currentTarget.src="https://lh3.googleusercontent.com/proxy/cdorEzsjBEmJOexk6RgpUNcqI-snxPTuZilyQL_HaA1JwN2qGHrVPN9OcOHoVshH0c2odbB8I1QTXkHSyq5TEcN6UIR7B4fwsA"
+        event.currentTarget.src="http://clipart-library.com/coloring/di9dxbbi7.gif"
     }
     return (
         <Container fluid>
