@@ -75,45 +75,43 @@ class ListEdit extends Component {
         }
         else {
             return (
-                <div>
-                    Edit List:
-                    <Container fluid='lg'>
-                        <Form onSubmit={this.handleSubmit}>
-                            <Form.Group controlId="name">
-                                <Form.Label>Name: </Form.Label>
-                                <Form.Control type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
-                            </Form.Group>
-                            <Form.Group controlId="note">
-                                <Form.Label>Note: </Form.Label>
-                                <Form.Control as="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
-                            </Form.Group>
-                            <Form.Group controlId="books">
-                                <Form.Label>Add Books:</Form.Label> 
-                                <Autocomplete
-                                    onChange={this.handleBookChoiceOnChange}
-                                    multiple
-                                    id="book-selection-box"
-                                    name="book"
-                                    options={allBooks}
-                                    getOptionLabel={option => option.title} 
-                                    defaultValue={allBooks.filter(book => this.state.books.filter(bookFromState => bookFromState.id === book.id).length > 0)}
-                                    style={{ width: 300 }}
-                                    renderInput={(params) => <TextField {...params} label="Books" variant="outlined"/>}
-                                />
-                            </Form.Group>
-                            <Row>
-                                <Col >
-                                    <Form.Group>
-                                        <Button variant='primary' type='submit'>Submit Changes</Button>
-                                    </Form.Group>
-                                </Col>
-                                <Col >
-                                    <DeleteObject object_type="list" object={this.state}/>
-                                </Col>
-                            </Row>
-                        </Form>
-                    </Container>
-                </div>
+                <Container fluid='lg'>
+                    <h3>Edit List:</h3>
+                    <Form onSubmit={this.handleSubmit}>
+                        <Form.Group controlId="name">
+                            <Form.Label>Name: </Form.Label>
+                            <Form.Control type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
+                        </Form.Group>
+                        <Form.Group controlId="note">
+                            <Form.Label>Note: </Form.Label>
+                            <Form.Control as="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
+                        </Form.Group>
+                        <Form.Group controlId="books">
+                            <Form.Label>Add Books:</Form.Label> 
+                            <Autocomplete
+                                onChange={this.handleBookChoiceOnChange}
+                                multiple
+                                id="book-selection-box"
+                                name="book"
+                                options={allBooks}
+                                getOptionLabel={option => option.title} 
+                                defaultValue={allBooks.filter(book => this.state.books.filter(bookFromState => bookFromState.id === book.id).length > 0)}
+                                style={{ width: 300 }}
+                                renderInput={(params) => <TextField {...params} label="Books" variant="outlined"/>}
+                            />
+                        </Form.Group>
+                        <Row>
+                            <Col >
+                                <Form.Group>
+                                    <Button variant='primary' type='submit'>Submit Changes</Button>
+                                </Form.Group>
+                            </Col>
+                            <Col >
+                                <DeleteObject object_type="list" object={this.state}/>
+                            </Col>
+                        </Row>
+                    </Form>
+                </Container>
             )
         }
     }

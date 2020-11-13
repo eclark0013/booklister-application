@@ -35,6 +35,7 @@ class BookInput extends Component {
     }
 
     handleListChoiceOnChange = (event) => {
+        debugger
         if (event.currentTarget.className.baseVal) {
             // unselecting a single list
             let unselectedList = event.target.parentElement.parentNode.innerText
@@ -71,45 +72,43 @@ class BookInput extends Component {
             return <Redirect to={"/books"} />
         }
         return (
-            <div>
-                New Book:
-                <Container fluid='lg'>
-                    <Form onSubmit={this.handleSubmit}>
-                        <Form.Group controlId="title">
-                            <Form.Label>Title: </Form.Label>
-                            <Form.Control type="text" placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange}/>
-                        </Form.Group>
-                        <Form.Group controlId="author">
-                            <Form.Label>Author: </Form.Label>
-                            <Form.Control type="text" placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange}/>
-                        </Form.Group>
-                        <Form.Group controlId="image_url">
-                            <Form.Label>Image URL: </Form.Label>
-                            <Form.Control type="image_url" placeholder="Image URL" name="image_url" value={this.state.image_url} onChange={this.handleChange}/>
-                        </Form.Group>
-                        <Form.Group controlId="note">
-                            <Form.Label>Note: </Form.Label>
-                            <Form.Control as="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
-                        </Form.Group>
-                        <Form.Group controlId="lists">
-                            <Form.Label>Select lists to add this book to...</Form.Label> 
-                            <Autocomplete
-                                onChange={this.handleListChoiceOnChange}
-                                multiple
-                                id="list-selection-box"
-                                name="list"
-                                options={this.props.lists.filter(list => list.name !== "All Books")}
-                                getOptionLabel={(option) => `${option.name}`} 
-                                style={{ width: 300 }}
-                                renderInput={(params) => <TextField {...params} label="Lists" variant="outlined"/>}
-                            />
-                        </Form.Group>
-                        <Form.Group>
-                            <Button variant='primary' type='submit'>Submit</Button>
-                        </Form.Group>
-                    </Form>
-                </Container>
-            </div>
+            <Container fluid='lg'>
+                <h3>New Book:</h3>
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Group controlId="title">
+                        <Form.Label>Title: </Form.Label>
+                        <Form.Control type="text" placeholder="Title" name="title" value={this.state.title} onChange={this.handleChange}/>
+                    </Form.Group>
+                    <Form.Group controlId="author">
+                        <Form.Label>Author: </Form.Label>
+                        <Form.Control type="text" placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange}/>
+                    </Form.Group>
+                    <Form.Group controlId="image_url">
+                        <Form.Label>Image URL: </Form.Label>
+                        <Form.Control type="image_url" placeholder="Image URL" name="image_url" value={this.state.image_url} onChange={this.handleChange}/>
+                    </Form.Group>
+                    <Form.Group controlId="note">
+                        <Form.Label>Note: </Form.Label>
+                        <Form.Control as="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
+                    </Form.Group>
+                    <Form.Group controlId="lists">
+                        <Form.Label>Select lists to add this book to...</Form.Label> 
+                        <Autocomplete
+                            onChange={this.handleListChoiceOnChange}
+                            multiple
+                            id="list-selection-box"
+                            name="list"
+                            options={this.props.lists.filter(list => list.name !== "All Books")}
+                            getOptionLabel={(option) => `${option.name}`} 
+                            style={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Lists" variant="outlined"/>}
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Button variant='primary' type='submit'>Submit</Button>
+                    </Form.Group>
+                </Form>
+            </Container>
         )
     }
 }

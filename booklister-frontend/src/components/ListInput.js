@@ -70,38 +70,35 @@ class ListInput extends Component {
             return <Redirect to={"/lists"} />
         }
         return (
-            <div>
-                New List:
-
-                <Container fluid='lg'>
-                    <Form onSubmit={this.handleSubmit}>
-                        <Form.Group controlId="name">
-                            <Form.Label>Name: </Form.Label>
-                            <Form.Control type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
-                        </Form.Group>
-                        <Form.Group controlId="note">
-                            <Form.Label>Note: </Form.Label>
-                            <Form.Control as="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
-                        </Form.Group>
-                        <Form.Group controlId="books">
-                            <Form.Label>Add Books:</Form.Label> 
-                            <Autocomplete
-                                onChange={this.handleBookChoiceOnChange}
-                                multiple
-                                id="book-selection-box"
-                                name="book"
-                                options={this.props.lists[0].books}
-                                getOptionLabel={(option) => `${option.title}`}
-                                style={{ width: 300 }}
-                                renderInput={(params) => <TextField {...params} label="Book" variant="outlined"/>}
-                            />
-                        </Form.Group>
-                        <Form.Group>
-                            <Button variant='primary' type='submit'>Submit</Button>
-                        </Form.Group>
-                    </Form>
-                </Container>
-            </div>
+            <Container fluid='lg'>
+                <h3>New List:</h3>
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Group controlId="name">
+                        <Form.Label>Name: </Form.Label>
+                        <Form.Control type="text" placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/>
+                    </Form.Group>
+                    <Form.Group controlId="note">
+                        <Form.Label>Note: </Form.Label>
+                        <Form.Control as="textarea" placeholder="Note" name="note" value={this.state.note} onChange={this.handleChange}/>
+                    </Form.Group>
+                    <Form.Group controlId="books">
+                        <Form.Label>Add Books:</Form.Label> 
+                        <Autocomplete
+                            onChange={this.handleBookChoiceOnChange}
+                            multiple
+                            id="book-selection-box"
+                            name="book"
+                            options={this.props.lists[0].books}
+                            getOptionLabel={(option) => `${option.title}`}
+                            style={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Book" variant="outlined"/>}
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Button variant='primary' type='submit'>Submit</Button>
+                    </Form.Group>
+                </Form>
+            </Container>
         )
     }
 }
