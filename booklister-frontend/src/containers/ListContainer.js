@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 const ListContainer = (props) => {
   
     let list
+    debugger
     if(props.match.path === "/books") {
         list = props.lists[0]
     }
@@ -17,8 +18,9 @@ const ListContainer = (props) => {
     let history = useHistory()
     if (!list) {
         history.push("/lists")
+        return null
     }
-    if (props.componentToLoad === "edit"){
+    else if (props.componentToLoad === "edit"){
         return <ListEdit list={list} books={list.books} allBooks={props.all_books_list.books} allBooksList={props.all_books_list} />
     }
     else {
