@@ -8,7 +8,6 @@ import { useHistory } from "react-router-dom";
 const ListContainer = (props) => {
   
     let list
-    debugger
     if(props.match.path === "/books") {
         list = props.lists[0]
     }

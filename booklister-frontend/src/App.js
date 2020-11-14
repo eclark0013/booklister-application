@@ -44,7 +44,7 @@ class App extends Component {
             <Nav.Link href="/books/new">New Book</Nav.Link>
           </Navbar>
           <Switch>
-            <Route path='/lists/new' render={(routerProps) => <ListInput {...routerProps} standard_lists={this.props.standard_lists} all_books_list = {this.props.all_books_list}/>}  />
+            <Route path='/lists/new' render={(routerProps) => <ListInput {...routerProps} />}  />
             <Route path='/lists/:id/edit' render={(routerProps) => <ListContainer {...routerProps} componentToLoad={"edit"} />} />
             <Route path='/lists/:id' render={(routerProps) => <ListContainer {...routerProps} componentToLoad={"show"} />} />
             <Route path='/lists' render={(routerProps) => <ListCardsContainer {...routerProps} />} />

@@ -10,7 +10,7 @@ const ListCardsContainer = (props) => {
             <h1>All Lists:</h1>
             <Row className="justify-content-around">
                 {props.lists.map(list => 
-                    <ListCard list={list} />
+                    <ListCard list={list} key={list.id}/>
                 )}
             </Row>
         </Container>

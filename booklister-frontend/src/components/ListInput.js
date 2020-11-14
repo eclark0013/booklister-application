@@ -9,7 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 class ListInput extends Component {
-    bookOptions = this.props.lists[0].books
 
     state = {
         name: "",
@@ -88,7 +87,7 @@ class ListInput extends Component {
                             multiple
                             id="book-selection-box"
                             name="book"
-                            options={this.props.lists[0].books}
+                            options={this.props.all_books_list.books}
                             getOptionLabel={(option) => `${option.title}`}
                             style={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Book" variant="outlined"/>}
