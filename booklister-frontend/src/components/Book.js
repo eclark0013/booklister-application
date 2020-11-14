@@ -5,7 +5,7 @@ import {Container, Row, Col, Image} from 'react-bootstrap'
 const Book = (props) => {
     let book = props.all_books_list.books.find(book => book.id.toString() === props.match.params.id)
     if(!book) {
-        return (<Redirect to="/lists" />)
+        return (<Redirect to="/" />)
     }
     const handleImgError = (event) => {
         event.currentTarget.src="http://clipart-library.com/coloring/di9dxbbi7.gif"

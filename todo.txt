@@ -1,4 +1,6 @@
 After submission
+- navbar component?
 - add warning to delete page
+- handle display of lists with only 1 book on all lists
 - backspace is not recognized on Autocomplete section of form as a way to delete the last option in the list
 - handle input errors (such as naming a new list the same thing as an old one or as "All Books" in particular)

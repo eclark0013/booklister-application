@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {fetchLists} from './actions/fetchLists'
-import ListContainer from './containers/ListContainer';
-import {Switch, Route} from 'react-router-dom'
-import ListInput from './components/ListInput'
-import BookEdit from './components/BookEdit'
-import BookInput from './components/BookInput'
-import Book from './components/Book'
-import Home from './components/Home'
+import { fetchLists } from './actions/fetchLists'
 import {Navbar, NavDropdown, Nav} from 'react-bootstrap'
+import {Switch, Route} from 'react-router-dom'
+import Home from './components/Home'
 import LoadingPage from './components/LoadingPage';
+import ListContainer from './containers/ListContainer';
+import ListInput from './components/ListInput'
 import ListCardsContainer from './containers/ListCardsContainer';
-import './app.css'
+import BookInput from './components/BookInput'
+import BookEdit from './components/BookEdit'
+import Book from './components/Book'
 
 class App extends Component {  
   
   render() {
-    if (!(this.props.lists && this.props.standard_lists && this.props.all_books_list)) {
+    if (!(this.props.lists && this.props.standard_lists)) {
       this.props.fetchLists()
       return (
         <LoadingPage />
@@ -24,8 +23,8 @@ class App extends Component {
     }
     else {
       return (
-        <div>
-          <Navbar id="navbar" bg="dark" variant="dark" sticky="top">
+        <div>          
+          <Navbar style={{marginBottom: "1em"}} bg="dark" variant="dark" sticky="top">
             <Navbar.Brand href="/">Booklister</Navbar.Brand>
             <NavDropdown title="Lists" id="collapsible-nav-dropdown">
               <NavDropdown.Item eventKey={0} href="/lists">All Lists</NavDropdown.Item>
