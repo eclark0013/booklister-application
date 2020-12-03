@@ -15,7 +15,7 @@ import Book from './components/Book'
 class App extends Component {  
   
   render() {
-    if (!(this.props.lists && this.props.standard_lists)) {
+    if (!(this.props.lists && this.props.standardLists)) {
       this.props.fetchLists()
       return (
         <LoadingPage />
@@ -37,7 +37,7 @@ class App extends Component {
             <NavDropdown title="Books" id="collapsible-nav-dropdown">
               <NavDropdown.Item eventKey={0} href="/lists/1">All Books</NavDropdown.Item>
               <NavDropdown.Divider />
-              {this.props.all_books_list.books.map( book => 
+              {this.props.allBooksList.books.map( book => 
                 <NavDropdown.Item key={book.id} href={`/books/${book.id}`}>{book.title}</NavDropdown.Item>
               )}
             </NavDropdown>
@@ -49,8 +49,8 @@ class App extends Component {
             <Route path='/lists/:id' render={(routerProps) => <ListContainer {...routerProps} componentToLoad={"show"} />} />
             <Route path='/lists' render={(routerProps) => <ListCardsContainer {...routerProps} />} />
             <Route path='/books/new' component={BookInput} />
-            <Route path='/books/:id/edit' render={(routerProps) => <BookEdit {...routerProps} standard_lists={this.props.standard_lists} all_books_list = {this.props.all_books_list}/>} />
-            <Route path='/books/:id' render={(routerProps) => <Book {...routerProps} lists={this.props.lists} all_books_list = {this.props.all_books_list}/>} />
+            <Route path='/books/:id/edit' render={(routerProps) => <BookEdit {...routerProps} standardLists={this.props.standardLists} allBooksList = {this.props.allBooksList}/>} />
+            <Route path='/books/:id' render={(routerProps) => <Book {...routerProps} lists={this.props.lists} allBooksList = {this.props.allBooksList}/>} />
             <Route path='/books' render={(routerProps) => <ListContainer {...routerProps} componentToLoad={"show"}/>} />
             <Route path='/' component={Home} />
           </Switch>

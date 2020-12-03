@@ -49,7 +49,7 @@ class ListEdit extends Component {
         else {
             // selecting a book
             let selectedBookTitle = Array.prototype.slice.call(document.getElementsByClassName("MuiAutocomplete-option")).filter(element => element.getAttribute("data-focus") === 'true')[0].innerText
-            let selectedBook = this.props.all_books_list.books.find(book => book.title === selectedBookTitle)
+            let selectedBook = this.props.allBooksList.books.find(book => book.title === selectedBookTitle)
             let oldStateBooks = [...this.state.books]
             if (oldStateBooks.includes(selectedBook)){
                 let newStateBooks = oldStateBooks.filter(book => book !== selectedBook)
@@ -107,7 +107,7 @@ class ListEdit extends Component {
                                 </Form.Group>
                             </Col>
                             <Col >
-                                <DeleteObject object_type="list" object={this.state}/>
+                                <DeleteObject objectType="list" object={this.state}/>
                             </Col>
                         </Row>
                     </Form>

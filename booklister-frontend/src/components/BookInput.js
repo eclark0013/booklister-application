@@ -15,7 +15,7 @@ class BookInput extends Component {
         title: "",
         author: "",
         note: "",
-        image_url: "",
+        imageUrl: "",
         lists: [],
         redirectToReferrer: false,
     }
@@ -82,9 +82,9 @@ class BookInput extends Component {
                         <Form.Label>Author: </Form.Label>
                         <Form.Control type="text" placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange}/>
                     </Form.Group>
-                    <Form.Group controlId="image_url">
+                    <Form.Group controlId="imageUrl">
                         <Form.Label>Image URL: </Form.Label>
-                        <Form.Control type="image_url" placeholder="Image URL" name="image_url" value={this.state.image_url} onChange={this.handleChange}/>
+                        <Form.Control type="imageUrl" placeholder="Image URL" name="imageUrl" value={this.state.imageUrl} onChange={this.handleChange}/>
                     </Form.Group>
                     <Form.Group controlId="note">
                         <Form.Label>Note: </Form.Label>
@@ -97,7 +97,7 @@ class BookInput extends Component {
                             multiple
                             id="list-selection-box"
                             name="list"
-                            options={this.props.standard_lists}
+                            options={this.props.standardLists}
                             getOptionLabel={(option) => `${option.name}`} 
                             style={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Lists" variant="outlined"/>}

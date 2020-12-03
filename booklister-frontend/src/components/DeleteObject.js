@@ -11,18 +11,18 @@ const DeleteObject = (props) => {
     const history = useHistory()
 
     const doSomething = () =>{ 
-        if (props.object_type === "book"){
+        if (props.objectType === "book"){
             props.deleteBook(props.object)
             history.push("/books")
         }
-        if (props.object_type === "list"){
+        if (props.objectType === "list"){
             props.deleteList(props.object)
             history.push("/lists")
         }
     }
 
     return(
-        <Button variant="warning" type="submit" onClick={doSomething}>{`Delete ${props.object_type}`}</Button>
+        <Button variant="warning" type="submit" onClick={doSomething}>{`Delete ${props.objectType}`}</Button>
     )
 }   
 

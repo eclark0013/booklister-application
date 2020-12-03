@@ -48,7 +48,7 @@ class ListInput extends Component {
         else {
             // selecting a book
             let selectedBookTitle = Array.prototype.slice.call(document.getElementsByClassName("MuiAutocomplete-option")).filter(element => element.getAttribute("data-focus") === 'true')[0].innerText
-            let selectedBook = this.props.all_books_list.books.find(book => book.title === selectedBookTitle)
+            let selectedBook = this.props.allBooksList.books.find(book => book.title === selectedBookTitle)
             let oldStateBooks = [...this.state.books]
             if (oldStateBooks.includes(selectedBook)){
                 let newStateBooks = oldStateBooks.filter(book => book !== selectedBook)
@@ -87,7 +87,7 @@ class ListInput extends Component {
                             multiple
                             id="book-selection-box"
                             name="book"
-                            options={this.props.all_books_list.books}
+                            options={this.props.allBooksList.books}
                             getOptionLabel={(option) => `${option.title}`}
                             style={{ width: 300 }}
                             renderInput={(params) => <TextField {...params} label="Book" variant="outlined"/>}

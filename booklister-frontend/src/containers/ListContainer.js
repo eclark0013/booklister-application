@@ -20,10 +20,10 @@ const ListContainer = (props) => {
         return null
     }
     else if (props.componentToLoad === "edit"){
-        return <ListEdit list={list} books={list.books} allBooks={props.all_books_list.books} allBooksList={props.all_books_list} />
+        return <ListEdit list={list} books={list.books} allBooks={props.allBooksList.books} allBooksList={props.allBooksList} />
     }
     else {
-        return <List list={list} books={list.books} allBooks={props.all_books_list.books}/>
+        return <List list={list} books={list.books} allBooks={props.allBooksList.books}/>
     }
 }
 

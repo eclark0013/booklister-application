@@ -17,13 +17,13 @@ class BookEdit extends Component {
         title: "",
         author: "",
         note: "",
-        image_url: "",
+        imageUrl: "",
         lists: [],
         redirectToReferrer: false
     }
 
     componentDidMount() {
-        let book = this.props.all_books_list.books.find(book => book.id.toString() === this.props.match.params.id)
+        let book = this.props.allBooksList.books.find(book => book.id.toString() === this.props.match.params.id)
         if(!book) {
             return (<Redirect to="/lists/1" />) 
         }
@@ -33,8 +33,8 @@ class BookEdit extends Component {
             title: book.title,
             author: book.author,
             note: book.note,
-            image_url: book.image_url,
-            lists: this.props.standard_lists.filter(list => list.books.filter(book_check => book_check.id === book.id).length > 0)
+            imageUrl: book.imageUrl,
+            lists: this.props.standardLists.filter(list => list.books.filter(bookCheck => bookCheck.id === book.id).length > 0)
         })
     }
 
@@ -47,7 +47,7 @@ class BookEdit extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         this.setState(({
-            lists: [...this.state.lists, this.props.all_books_list],
+            lists: [...this.state.lists, this.props.allBooksList],
             redirectToReferrer: true
         }), () => {
             this.props.editBook(this.state)
@@ -108,10 +108,10 @@ class BookEdit extends Component {
                             <Form.Label>Author: </Form.Label>
                             <Form.Control type="text" placeholder="Author" name="author" value={this.state.author} onChange={this.handleChange}/>
                         </Form.Group>
-                        <Form.Group controlId="image_url">
+                        <Form.Group controlId="imageUrl">
                             <Form.Label>Image URL: </Form.Label>
-                            <Form.Control type="image_url" placeholder="Image URL" name="image_url" value={this.state.image_url} onChange={this.handleChange}/>
-                            <img src={this.state.image_url} height="120px" alt=""/>
+                            <Form.Control type="imageUrl" placeholder="Image URL" name="imageUrl" value={this.state.imageUrl} onChange={this.handleChange}/>
+                            <img src={this.state.imageUrl} height="120px" alt=""/>
                         </Form.Group>
                         <Form.Group controlId="note">
                             <Form.Label>Note: </Form.Label>
@@ -124,7 +124,7 @@ class BookEdit extends Component {
                                 multiple
                                 id="list-selection-box"
                                 name="list"
-                                options={this.props.standard_lists}
+                                options={this.props.standardLists}
                                 getOptionLabel={(option) => `${option.name}`}
                                 defaultValue={this.state.lists}
                                 style={{ width: 300 }}
@@ -138,7 +138,7 @@ class BookEdit extends Component {
                                 </Form.Group>
                             </Col>
                             <Col >
-                                <DeleteObject object_type="book" object={this.state}/>
+                                <DeleteObject objectType="book" object={this.state}/>
                             </Col>
                         </Row>
                     </Form>

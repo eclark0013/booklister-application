@@ -8,7 +8,7 @@ const Books = (props) => {
                 {props.books.map(book => 
                     <Card className="m-3" style={{minWidth:"120px", maxWidth:"220px"}}>
                         <Card.Body>
-                            <Card.Img src={book.image_url} />
+                            <Card.Img src={book.imageUrl} />
                             <Card.Title>
                                 {book.title}
                             </Card.Title>

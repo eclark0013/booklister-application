@@ -5,62 +5,62 @@ export default function appReducer(state = { requesting: true
             return {...state, requesting: true}
         case 'FETCH_LISTS':
             let lists = action.payload.lists
-            let standard_lists = action.payload.lists.filter(list => list.id !== 1)
-            let all_books_list = action.payload.lists[0]
-            return {...state, lists, standard_lists, all_books_list, requesting: false}
+            let standardLists = action.payload.lists.filter(list => list.id !== 1)
+            let allBooksList = action.payload.lists[0]
+            return {...state, lists, standardLists, allBooksList, requesting: false}
         case 'START_ADD_LIST':
-            let start_add_list_state = {...state, requesting: true}
-            let new_list = action.payload
-            new_list.id = state.lists[state.lists.length-1].id+1
-            return {...start_add_list_state, lists: state.lists.concat(new_list)}
+            let startAddListState = {...state, requesting: true}
+            let newList = action.payload
+            newList.id = state.lists[state.lists.length-1].id+1
+            return {...startAddListState, lists: state.lists.concat(newList)}
         case 'ADD_LIST':
             return {...state, requesting: false}
         case 'START_ADD_BOOK':
-            let start_add_book_state = {...state, requesting: true}
+            let startAddBookState = {...state, requesting: true}
             let listlessBook = {...action.payload}
             delete listlessBook.lists
             delete listlessBook.redirectToReferrer
-            let all_books_List = start_add_book_state.lists.find(list => list.name === "All Books")
-            listlessBook.id = all_books_List.books[all_books_List.books.length-1].id+1
-            all_books_List.books.push(listlessBook)
+            let allBooksList = startAddBookState.lists.find(list => list.name === "All Books")
+            listlessBook.id = allBooksList.books[allBooksList.books.length-1].id+1
+            allBooksList.books.push(listlessBook)
             for (const payloadList of action.payload.lists) {
-                let targetList = start_add_book_state.lists.find(list => list.name === payloadList)
+                let targetList = startAddBookState.lists.find(list => list.name === payloadList)
                 targetList.books.push(listlessBook)
             }
-            return start_add_book_state
+            return startAddBookState
         case 'ADD_BOOK':
             return {...state, requesting: false}
         case 'START_EDIT_BOOK':
-            let start_edit_book_state = {...state, requesting: true}
+            let startEditBookState = {...state, requesting: true}
             let bookToEdit = action.payload
-            bookToEdit.list_ids = action.payload.lists.map(list => list.id)
+            bookToEdit.listIds = action.payload.lists.map(list => list.id)
             delete bookToEdit.lists
-            let book_index = start_edit_book_state.all_books_list.books.findIndex(book => book.id === action.payload.id)
-            start_edit_book_state.all_books_list.books[book_index] = bookToEdit
-            return start_edit_book_state
+            let bookIndex = startEditBookState.allBooksList.books.findIndex(book => book.id === action.payload.id)
+            startEditBookState.allBooksList.books[bookIndex] = bookToEdit
+            return startEditBookState
         case 'EDIT_BOOK':
             return {...state, requesting: false}
         case 'START_EDIT_LIST':
-            let start_edit_list_state = {...state, requesting: true}
-            let list = start_edit_list_state.lists.find(list => list.id === action.payload.id)
+            let startEditListState = {...state, requesting: true}
+            let list = startEditListState.lists.find(list => list.id === action.payload.id)
             list.name = action.payload.name
             list.note = action.payload.note
             list.books = action.payload.books
-            return start_edit_list_state
+            return startEditListState
         case 'EDIT_LIST':
             return {...state, requesting: false}
         case 'START_DELETE_BOOK':
-            let start_delete_book_state = {...state, requesting: true}
-            let bookIndex = start_delete_book_state.all_books_list.books.findIndex(book => book.id === action.payload.id)
-            start_delete_book_state.all_books_list.books.splice(bookIndex, 1)
-            return start_delete_book_state
+            let startDeleteBookState = {...state, requesting: true}
+            let bookIndex = startDeleteBookState.allBooksList.books.findIndex(book => book.id === action.payload.id)
+            startDeleteBookState.allBooksList.books.splice(bookIndex, 1)
+            return startDeleteBookState
         case 'DELETE_BOOK':
             return {...state, requesting: false}
         case 'START_DELETE_LIST':
-            let start_delete_list_state = {...state, requesting: true}
-            let listIndex = start_delete_list_state.lists.findIndex(list => list.id === action.payload.id)
-            start_delete_list_state.lists.splice(listIndex, 1)
-            return start_delete_list_state
+            let startDeleteListState = {...state, requesting: true}
+            let listIndex = startDeleteListState.lists.findIndex(list => list.id === action.payload.id)
+            startDeleteListState.lists.splice(listIndex, 1)
+            return startDeleteListState
         case 'DELETE_LIST':
             return {...state, requesting: false}
         default: 
