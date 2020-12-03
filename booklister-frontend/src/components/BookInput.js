@@ -84,7 +84,7 @@ class BookInput extends Component {
                     </Form.Group>
                     <Form.Group controlId="imageUrl">
                         <Form.Label>Image URL: </Form.Label>
-                        <Form.Control type="imageUrl" placeholder="Image URL" name="imageUrl" value={this.state.imageUrl} onChange={this.handleChange}/>
+                        <Form.Control type="imageUrl" placeholder="Image URL" name="image_url" value={this.state.imageUrl} onChange={this.handleChange}/>
                     </Form.Group>
                     <Form.Group controlId="note">
                         <Form.Label>Note: </Form.Label>

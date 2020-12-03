@@ -14,7 +14,7 @@ const Book = (props) => {
         <Container fluid>
             <Row>
                 <Col style={{ maxWidth: "300px" }}>
-                    <Image src={book.imageUrl} onError={handleImgError} thumbnail/>
+                    <Image src={book.image_url} onError={handleImgError} thumbnail/>
                 </Col>
                 <Col>
                     <Row>
@@ -27,7 +27,7 @@ const Book = (props) => {
                     <p>{book.note}</p>
                     <div>A part of the following lists:</div> 
                     <ul>
-                        {book.listIds.map(listId => <li key={listId}><Link to={`/lists/${listId}`}> {props.lists.find(list => list.id === listId).name} </Link></li>)}
+                        {book.list_ids.map(listId => <li key={listId}><Link to={`/lists/${listId}`}> {props.lists.find(list => list.id === listId).name} </Link></li>)}
                     </ul>
                     <Link to={`/books/${book.id}/edit`}>Edit Book</Link>
                 </Col>

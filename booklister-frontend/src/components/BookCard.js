@@ -9,7 +9,7 @@ const BookCard = (props) => {
     return (
         <Card className="m-3" style={{minWidth:"120px", maxWidth:"220px"}}>
             <Card.Body>
-                <Card.Img src={book.imageUrl} onError={handleImgError} />
+                <Card.Img src={book.image_url} onError={handleImgError} />
                 <Card.Title>
                     {book.title}
                 </Card.Title>

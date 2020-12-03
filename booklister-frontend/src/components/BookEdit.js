@@ -33,7 +33,7 @@ class BookEdit extends Component {
             title: book.title,
             author: book.author,
             note: book.note,
-            imageUrl: book.imageUrl,
+            imageUrl: book.image_url,
             lists: this.props.standardLists.filter(list => list.books.filter(bookCheck => bookCheck.id === book.id).length > 0)
         })
     }
@@ -110,7 +110,7 @@ class BookEdit extends Component {
                         </Form.Group>
                         <Form.Group controlId="imageUrl">
                             <Form.Label>Image URL: </Form.Label>
-                            <Form.Control type="imageUrl" placeholder="Image URL" name="imageUrl" value={this.state.imageUrl} onChange={this.handleChange}/>
+                            <Form.Control type="imageUrl" placeholder="Image URL" name="image_url" value={this.state.imageUrl} onChange={this.handleChange}/>
                             <img src={this.state.imageUrl} height="120px" alt=""/>
                         </Form.Group>
                         <Form.Group controlId="note">

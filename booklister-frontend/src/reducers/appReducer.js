@@ -20,9 +20,9 @@ export default function appReducer(state = { requesting: true
             let listlessBook = {...action.payload}
             delete listlessBook.lists
             delete listlessBook.redirectToReferrer
-            let allBooksList = startAddBookState.lists.find(list => list.name === "All Books")
-            listlessBook.id = allBooksList.books[allBooksList.books.length-1].id+1
-            allBooksList.books.push(listlessBook)
+            let allBooksList_ = startAddBookState.lists.find(list => list.name === "All Books")
+            listlessBook.id = allBooksList_.books[allBooksList_.books.length-1].id+1
+            allBooksList_.books.push(listlessBook)
             for (const payloadList of action.payload.lists) {
                 let targetList = startAddBookState.lists.find(list => list.name === payloadList)
                 targetList.books.push(listlessBook)
@@ -51,8 +51,8 @@ export default function appReducer(state = { requesting: true
             return {...state, requesting: false}
         case 'START_DELETE_BOOK':
             let startDeleteBookState = {...state, requesting: true}
-            let bookIndex = startDeleteBookState.allBooksList.books.findIndex(book => book.id === action.payload.id)
-            startDeleteBookState.allBooksList.books.splice(bookIndex, 1)
+            let bookIndex_ = startDeleteBookState.allBooksList.books.findIndex(book => book.id === action.payload.id)
+            startDeleteBookState.allBooksList.books.splice(bookIndex_, 1)
             return startDeleteBookState
         case 'DELETE_BOOK':
             return {...state, requesting: false}
