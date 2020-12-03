@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ListImages from './ListImages'
-import {Container, Card, Button, Row} from 'react-bootstrap'
-
+import {Container, Card, Row} from 'react-bootstrap'
 
 
 const ListCard = (props) => {
@@ -18,7 +17,6 @@ const ListCard = (props) => {
                         <ListImages list={list} />
                     </Row>
                 </Container>
-                <Button variant="info" href={`/lists/${list.id}`}>More Info</Button>
             </Card.Body>
         </Card> 
     )

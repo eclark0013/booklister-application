@@ -1,8 +1,20 @@
 After submission
-- navbar component?
+- navbar component
 - limit what info is sent to a component from the store to only the info that component will need
+    - const mapStateToProps = state => {
+            return {lists: state.lists}
+        }
+- add border to all images of books
+    - could use css
+        - img {
+
+        }
+    - could add styling inline to image elements and components
 - add warning to delete page
 - handle display of lists with only 1 book on all lists
 - backspace is not recognized on Autocomplete section of form as a way to delete the last option in the list
 - handle input errors (such as naming a new list the same thing as an old one or as "All Books" in particular)
-- add border to all images of books
+- combine reducers
+    - https://redux.js.org/api/combinereducers
+- handle data separation of lists to lists / standard_lists / all_books_list on the backend instead of the frontend
+    - This should be ablel to done with the index action in lists_controller.rb

@@ -1,5 +1,7 @@
 import React from 'react'
 import {Card, Button} from 'react-bootstrap'
+// import Counter from './Counter'
+
 
 const BookCard = (props) => {
     let book = props.book
@@ -17,6 +19,7 @@ const BookCard = (props) => {
                     by {book.author}
                 </Card.Text>
                 <Button variant="info" href={`/books/${book.id}`}>More Info</Button>
+                {/* <Counter /> */}
             </Card.Body>
         </Card> 
     )
