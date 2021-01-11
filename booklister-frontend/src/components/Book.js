@@ -1,11 +1,16 @@
 import React from 'react'
-import { callGoogleAPI } from '../actions/callGoogleAPI'
 import {Redirect, Link} from 'react-router-dom'
 import {Container, Row, Col, Image, Button} from 'react-bootstrap'
 
 const Book = (props) => {
 
     let book = props.allBooksList.books.find(book => book.id.toString() === props.match.params.id)
+    if (!book.list_ids){
+            book.list_ids = book.listIds
+        }
+    if (!book.image_url){
+        book.image_url = book.imageUrl
+    }
     if(!book) {
         return (<Redirect to="/books" />)
     }
